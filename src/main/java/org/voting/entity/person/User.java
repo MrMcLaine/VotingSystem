@@ -1,4 +1,4 @@
-package org.voting.entity.persons;
+package org.voting.entity.person;
 
 import org.springframework.util.CollectionUtils;
 import org.voting.entity.AbstractEntity;

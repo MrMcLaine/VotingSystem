@@ -1,4 +1,4 @@
-package org.voting.entity.persons;
+package org.voting.entity.person;
 
 public enum Role {
         USER,
