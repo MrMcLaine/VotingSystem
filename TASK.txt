@@ -1,0 +1,34 @@
+Что умеет моё приложение?
+
+User:
+-get profile
+-put profile //update
+-delete profile
+
+-get profile/restaurants
+-get profile/restaurants/{id}
+
+-put profile/votes/{id} //give votes
+-get profile/votes
+
+-get /history/menu
+-get /history/menu/{date}
+-get /history/votes
+-get /history/votes/{date}
+
+Admin:
+-post /admin/users
+-put /admin/users/{id}
+-delete /admin/users/{id}
+-get /admin/users{id}
+-get /admin/users/by?email
+-get /admin/users
+
+-post /admin/restaurants
+-put /admin/restaurants/{id}
+-delete /admin/restaurants/{id}
+
+-post /admin/restaurants/{id}/meal
+-put /admin/restaurants/{id}/meal/{id}
+-delete /admin/restaurants/{ad}/meal/{id}
+-get /admin/restaurants/{id}/meals?{date}	

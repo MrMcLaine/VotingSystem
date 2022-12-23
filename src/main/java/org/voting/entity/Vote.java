@@ -1,27 +1,45 @@
 package org.voting.entity;
 
+import org.voting.entity.abstractEntity.AbstractBaseEntity;
+import org.voting.entity.person.User;
+
 import java.time.LocalDateTime;
 
-public class Vote{
-    private final int restaurantId;
-    private final int userId;
-    private final LocalDateTime votingDateTime;
+public class Vote extends AbstractBaseEntity {
+    private User user;
+    private Restaurant restaurant;
+    private LocalDateTime votingDateTime;
 
-    public Vote(int restaurantId, int userId, LocalDateTime votingDateTime) {
-        this.restaurantId = restaurantId;
-        this.userId = userId;
+    public Vote() {
+    }
+
+    public Vote(Restaurant restaurant) {
+        this(null, restaurant);
+    }
+
+    public Vote(Integer id, Restaurant restaurant) {
+        super(id);
+        this.restaurant = restaurant;
+    }
+
+    public Vote(Restaurant restaurant, LocalDateTime votingDateTime) {
+        this.restaurant = restaurant;
         this.votingDateTime = votingDateTime;
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+    public Vote(int id, Restaurant restaurant, LocalDateTime votingDateTime) {
+        super(id);
+        this.votingDateTime = votingDateTime;
+        this.restaurant = restaurant;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public LocalDateTime getVotingDateTime() {
-        return votingDateTime;
+    @Override
+    public String toString() {
+        return "Vote{" +
+               "user=" + user +
+               ", restaurant=" + restaurant +
+               ", votingDateTime=" + votingDateTime +
+               ", id=" + id +
+               '}';
     }
 }
