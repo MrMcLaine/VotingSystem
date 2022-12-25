@@ -1,7 +1,6 @@
 package org.voting.entity.person;
 
 import org.springframework.util.CollectionUtils;
-import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.entity.abstractEntity.AbstractNamedEntity;
 
 import java.util.Collection;
@@ -40,14 +39,15 @@ public class User extends AbstractNamedEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
     }
 
+
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", email=" + email +
-                ", name=" + name +
-                ", enabled=" + enabled +
-                ", roles=" + roles +
-                '}';
+               "id=" + id +
+               ", email=" + email +
+               ", name=" + name +
+               ", enabled=" + enabled +
+               ", roles=" + roles +
+               '}';
     }
 }
