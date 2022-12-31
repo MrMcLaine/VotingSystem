@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Table(name = "meals")
 public class Meal extends AbstractNamedEntity {
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date_meal", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
     private LocalDate date;

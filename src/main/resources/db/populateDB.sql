@@ -17,12 +17,12 @@ VALUES ('USER', 100000),
        ('USER', 100002),
        ('USER', 100003);
 
-INSERT INTO restaurants (name, menu)
-VALUES ('Central, Lima', 'empty menu'),
-       ('Bon-Bon, Brussels', 'empty menu'),
-       ('Atelier Crenn, San Francisco', 'empty menu');
+INSERT INTO restaurants (name)
+VALUES ('Central, Lima'),
+       ('Bon-Bon, Brussels'),
+       ('Atelier Crenn, San Francisco');
 
-INSERT INTO meals (restaurant_id, description, price, date)
+INSERT INTO meals (restaurant_id, description, price, date_meal)
 VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100004,'Low Andes Mountain (1800 M)', 44, now()),
        (100004,'Extreme Stem (2875 M)', 26, now()),
@@ -33,7 +33,7 @@ VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100006, 'Love to Eat Avocado Toast', 68, now()),
        (100006, 'Shining star', 49, now());
 
-INSERT INTO votes(user_id, date, restaurant_id)
+INSERT INTO votes(user_id, voting_date_time, restaurant_id)
 VALUES (100000, now(), 100004),
        (100001, now(), 100005),
        (100002, now(), 100005),

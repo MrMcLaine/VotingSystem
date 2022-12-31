@@ -12,7 +12,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "vote_idx")})
+/*  ***Unable to create unique key constraint (user_id, voting_date_time) on table votes: database column 'voting_date_time' not found***
+@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(name="vote_idx",columnNames ={"user_id", "voting_date_time"})})
+*/
+@Table(name = "votes")
 public class Vote extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,6 +33,7 @@ public class Vote extends AbstractBaseEntity {
     private Restaurant restaurant;
 
     @Transient
+    @JoinColumn(name = "voting_date_time", nullable = false)
     private LocalDateTime votingDateTime = LocalDateTime.now();
 
     public Vote() {
