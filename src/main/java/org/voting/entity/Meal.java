@@ -6,7 +6,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.voting.View;
-import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.entity.abstractEntity.AbstractNamedEntity;
 import org.voting.util.DateTimeUtil;
 
@@ -15,7 +14,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "meals")
@@ -75,6 +73,14 @@ public class Meal extends AbstractNamedEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override

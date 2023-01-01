@@ -9,6 +9,7 @@ import org.voting.entity.person.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,8 +33,7 @@ public class Vote extends AbstractBaseEntity {
     @NotNull(groups = View.Persist.class)
     private Restaurant restaurant;
 
-    @Transient
-    @JoinColumn(name = "voting_date_time", nullable = false)
+    @Column(name="voting_date_time")
     private LocalDateTime votingDateTime = LocalDateTime.now();
 
     public Vote() {
