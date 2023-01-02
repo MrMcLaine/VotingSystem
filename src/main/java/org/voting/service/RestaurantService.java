@@ -1,5 +1,6 @@
 package org.voting.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.voting.entity.Restaurant;
 import org.voting.repository.RestaurantRepository;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class RestaurantService {
     private final RestaurantRepository repository;
 
