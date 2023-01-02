@@ -1,5 +1,8 @@
 package org.voting.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.voting.entity.person.User;
 import org.voting.repository.UserRepository;
@@ -9,10 +12,12 @@ import java.util.List;
 import static org.voting.util.ValidationUtil.checkNotFound;
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
 
+@Service("userService")
 public class UserService {
 
     private final UserRepository repository;
 
+    @Autowired
     public UserService(UserRepository repository) {
         this.repository = repository;
     }
@@ -42,5 +47,12 @@ public class UserService {
 
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    @Transactional
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
+        repository.save(user);
     }
 }
