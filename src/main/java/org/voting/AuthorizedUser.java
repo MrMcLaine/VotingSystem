@@ -22,7 +22,7 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         this.user = user;
     }
 
-        public int getId() {
+    public int getId() {
         return user.getId();
     }
 

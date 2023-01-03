@@ -22,7 +22,7 @@ import static org.voting.util.ValidationUtil.checkNew;
 @RequestMapping(value = MealRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MealRestController {
 
-    public static final String REST_URL = "/admin/restaurants/{id}/meals";
+    public static final String REST_URL = "/rest/admin/restaurants/{id}/meals";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 

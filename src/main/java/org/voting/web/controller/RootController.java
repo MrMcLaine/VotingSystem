@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);
 
-    @GetMapping("/")
+    @GetMapping("/voting-system")
     public String root() {
         log.info("root");
         return "index";

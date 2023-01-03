@@ -1,9 +1,14 @@
 package org.voting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.voting.AuthorizedUser;
 import org.voting.entity.person.User;
 import org.voting.repository.UserRepository;
 
@@ -13,7 +18,8 @@ import static org.voting.util.ValidationUtil.checkNotFound;
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("userService")
-public class UserService {
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class UserService  implements UserDetailsService {
 
     private final UserRepository repository;
 
@@ -54,5 +60,14 @@ public class UserService {
         User user = get(id);
         user.setEnabled(enabled);
         repository.save(user);
+    }
+
+    @Override
+    public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.getByEmail(email.toLowerCase());
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + email + " is not found");
+        }
+        return new AuthorizedUser(user);
     }
 }

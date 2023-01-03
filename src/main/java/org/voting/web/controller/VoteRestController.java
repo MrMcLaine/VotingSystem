@@ -19,7 +19,7 @@ import static org.voting.SecurityUtil.authUserId;
 @RequestMapping(VoteRestController.VOTE_URL)
 public class VoteRestController {
 
-    public static final String VOTE_URL = "/profile/votes";
+    public static final String VOTE_URL = "/rest/profile/votes";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 

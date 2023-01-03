@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = RestaurantProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantProfileRestController {
 
-    public static final String REST_URL = "/profile/restaurants";
+    public static final String REST_URL = "/rest/profile/restaurants";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
