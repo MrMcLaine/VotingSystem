@@ -6,7 +6,7 @@ import org.voting.entity.Vote;
 import org.voting.repository.CrudVoteRepository;
 import org.voting.repository.VoteRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Repository
 public class VoteRepositoryImpl implements VoteRepository {
@@ -15,13 +15,12 @@ public class VoteRepositoryImpl implements VoteRepository {
     private CrudVoteRepository repository;
 
     @Override
-
     public Vote save(Vote vote) {
         return repository.save(vote);
     }
 
     @Override
-    public Vote get(int userId, LocalDateTime dateTime) {
-        return  repository.get(userId, dateTime);
+    public Vote getVoteByUser(int userId, LocalDate date) {
+        return repository.getVoteByUser(userId, date);
     }
 }

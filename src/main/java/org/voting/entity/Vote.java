@@ -10,7 +10,7 @@ import org.voting.entity.person.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 /*  ***Unable to create unique key constraint (user_id, voting_date_time) on table votes: database column 'voting_date_time' not found***
@@ -33,8 +33,14 @@ public class Vote extends AbstractBaseEntity {
     @NotNull(groups = View.Persist.class)
     private Restaurant restaurant;
 
-    @Column(name="voting_date_time")
-    private LocalDateTime votingDateTime = LocalDateTime.now();
+/*    @Column(name="voting_date_time")
+    private LocalDateTime votingDateTime = LocalDateTime.now();*/
+
+    @Column(name = "voting_date", columnDefinition = "date default now()")
+    private LocalDate votingDate = LocalDate.now();
+
+    @Transient
+    private LocalTime votingTime = LocalTime.now();
 
     public Vote() {
     }
@@ -53,12 +59,44 @@ public class Vote extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public LocalDate getVotingDate() {
+        return votingDate;
+    }
+
+    public void setVotingDate(LocalDate votingDate) {
+        this.votingDate = votingDate;
+    }
+
+    public LocalTime getVotingTime() {
+        return votingTime;
+    }
+
+    public void setVotingTime(LocalTime votingTime) {
+        this.votingTime = votingTime;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
                "user=" + user +
                ", restaurant=" + restaurant +
-               ", votingDateTime=" + votingDateTime +
+               ", votingDateTime=" + votingDate +
                ", id=" + id +
                '}';
     }

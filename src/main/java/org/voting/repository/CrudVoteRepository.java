@@ -6,11 +6,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.voting.entity.Vote;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote,Integer> {
 
-    @Query("select v FROM Vote v where v.votingDateTime=:votingDateTime and v.user.id=:userId")
-    Vote get(@Param("userId") int userId, @Param("votingDateTime") LocalDateTime dateTime);
+    @Query("select v FROM Vote v where v.votingDate=:votingDate and v.user.id=:userId")
+    Vote getVoteByUser(@Param("userId") int userId, @Param("votingDate") LocalDate date);
 }

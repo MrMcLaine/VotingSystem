@@ -33,7 +33,7 @@ VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100006, 'Love to Eat Avocado Toast', 68, now()),
        (100006, 'Shining star', 49, now());
 
-INSERT INTO votes(user_id, voting_date_time, restaurant_id)
+INSERT INTO votes(user_id, voting_date, restaurant_id)
 VALUES (100000, now(), 100004),
        (100001, now(), 100005),
        (100002, now(), 100005),
