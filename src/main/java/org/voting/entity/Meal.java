@@ -21,7 +21,7 @@ public class Meal extends AbstractNamedEntity {
 
     @Column(name = "date_meal", nullable = false)
     @NotNull
-    @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
     private LocalDate date;
 
     @Column(name = "description", nullable = false)
@@ -57,6 +57,14 @@ public class Meal extends AbstractNamedEntity {
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getDescription() {

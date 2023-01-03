@@ -17,10 +17,10 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         super(username, password, authorities);
     }
 
-/*    public AuthorizedUser(User user) {
+    public AuthorizedUser(User user) {
         super(user.getName(), user.getPassword(), user.getRoles());
         this.user = user;
-    }*/
+    }
 
         public int getId() {
         return user.getId();

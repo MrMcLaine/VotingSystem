@@ -10,6 +10,7 @@ import org.voting.entity.person.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -54,9 +55,15 @@ public class Vote extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
-    public Vote(int id, Restaurant restaurant) {
+    public Vote(Restaurant restaurant, LocalDateTime dateTimeVote) {
+        this(null,restaurant,dateTimeVote);
+    }
+
+    public Vote(Integer id,Restaurant restaurant,LocalDateTime dateTimeVote){
         super(id);
-        this.restaurant = restaurant;
+        this.votingDate= dateTimeVote.toLocalDate();
+        this.votingTime=dateTimeVote.toLocalTime();
+        this.restaurant=restaurant;
     }
 
     public User getUser() {

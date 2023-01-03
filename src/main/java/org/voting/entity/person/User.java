@@ -61,6 +61,9 @@ public class User extends AbstractNamedEntity {
     public User() {
     }
 
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
+    }
 
     public User(Integer id, String name, String email, String password,
                 boolean enabled, Collection<Role> roles) {
@@ -106,11 +109,12 @@ public class User extends AbstractNamedEntity {
     @Override
     public String toString() {
         return "User{" +
-               "id=" + id +
-               ", email=" + email +
-               ", name=" + name +
+               "email='" + email + '\'' +
+               ", password='" + password + '\'' +
                ", enabled=" + enabled +
                ", roles=" + roles +
+               ", name='" + name + '\'' +
+               ", id=" + id +
                '}';
     }
 }
