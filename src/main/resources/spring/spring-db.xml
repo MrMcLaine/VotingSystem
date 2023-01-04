@@ -65,6 +65,9 @@
             </property>
         </bean>
 
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+              p:entityManagerFactory-ref="entityManagerFactory"/>
+
         <tx:annotation-driven/>
 
     </beans>
@@ -73,4 +76,5 @@
         <context:component-scan base-package="org.voting.repository"/>
         <jpa:repositories base-package="org.voting.repository"/>
     </beans>
+
 </beans>

@@ -35,8 +35,8 @@ public class VoteRestController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public VoteTo get() {
+    @GetMapping("/today") /*(produces = MediaType.APPLICATION_JSON_VALUE)*/
+    public VoteTo getTodayVote() {
         Vote myVote = service.getTodayVoteByUser(authUserId());
         return myVote != null ? new VoteTo(myVote) : null;
     }
