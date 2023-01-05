@@ -1,6 +1,7 @@
 package org.voting.repository;
 
 import org.voting.entity.Meal;
+import org.voting.entity.person.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,5 +13,6 @@ public interface MealRepository {
 
     boolean delete(int id, int restaurantId);
 
-    List<Meal> getDateMenu(int restaurantId, LocalDate date);
+    List<Meal> getActualMenu(int restaurantId);
+
 }

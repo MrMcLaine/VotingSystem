@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -14,6 +15,7 @@ import org.voting.repository.UserRepository;
 
 import java.util.List;
 
+import static org.voting.util.UsersUtil.prepareToSave;
 import static org.voting.util.ValidationUtil.checkNotFound;
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
 
@@ -23,9 +25,12 @@ public class UserService  implements UserDetailsService {
 
     private final UserRepository repository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User get(int id) {
@@ -69,5 +74,9 @@ public class UserService  implements UserDetailsService {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
         return new AuthorizedUser(user);
+    }
+
+    private User prepareAndSave(User user) {
+        return repository.save(prepareToSave(user, passwordEncoder));
     }
 }

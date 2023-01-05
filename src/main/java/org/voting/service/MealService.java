@@ -3,6 +3,7 @@ package org.voting.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.voting.entity.Meal;
+import org.voting.entity.person.User;
 import org.voting.repository.MealRepository;
 
 import java.time.LocalDate;
@@ -36,8 +37,8 @@ public class MealService {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
-    public List<Meal> getDateMenu(int restaurantId, LocalDate date) {
-        return repository.getDateMenu(restaurantId, date);
+    public List<Meal> getActualMenu(int restaurantId) {
+        return repository.getActualMenu(restaurantId);
     }
 
 }

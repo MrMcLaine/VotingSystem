@@ -40,7 +40,10 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public List<Meal> getDateMenu(int restaurantId, LocalDate date) {
-        return getDateMenu(restaurantId, date);
+    public List<Meal> getActualMenu(int restaurantId) {
+/*
+        return crudMealRepository.getDateMenu(restaurantId, date);
+*/
+        return crudMealRepository.getAll(restaurantId);
     }
 }

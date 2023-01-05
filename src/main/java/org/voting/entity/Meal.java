@@ -6,7 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.voting.View;
-import org.voting.entity.abstractEntity.AbstractNamedEntity;
+import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.util.DateTimeUtil;
 
 import javax.persistence.*;
@@ -17,12 +17,12 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "meals")
-public class Meal extends AbstractNamedEntity {
+public class Meal extends AbstractBaseEntity {
 
     @Column(name = "date_meal", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
-    private LocalDate date;
+    private LocalDate dateMeal;
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -45,26 +45,26 @@ public class Meal extends AbstractNamedEntity {
     }
 
     public Meal(String description, int price, Restaurant restaurant) {
-        this.date = LocalDate.now();
+        this.dateMeal = LocalDate.now();
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
     }
 
-    public Meal(Integer id, String name, LocalDate date, String description, int price, Restaurant restaurant) {
-        super(id, name);
-        this.date = date;
+    public Meal(Integer id, LocalDate date, String description, int price, Restaurant restaurant) {
+        super(id);
+        this.dateMeal = date;
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateMeal() {
+        return dateMeal;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateMeal(LocalDate dateMeal) {
+        this.dateMeal = dateMeal;
     }
 
     public String getDescription() {
@@ -94,10 +94,11 @@ public class Meal extends AbstractNamedEntity {
     @Override
     public String toString() {
         return "Meal{" +
-               "description='" + description + '\'' +
+               "dateMeal=" + dateMeal +
+               ", description='" + description + '\'' +
                ", price=" + price +
+               ", restaurant=" + restaurant +
                ", id=" + id +
-               ", name='" + name + '\'' +
                '}';
     }
 }

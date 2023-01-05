@@ -55,8 +55,14 @@ public class MealRestController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Meal> getDateMenu(@RequestParam LocalDate dateMenu, @PathVariable int id) {
-        log.info("getDateMenu with id {} by date {}", id, dateMenu);
-        return service.getDateMenu(id, dateMenu);
+    public List<Meal> getActualMenu(@PathVariable int id) {
+        log.info("getDateMenu with id {} by date {}", id, LocalDate.now());
+        return service.getActualMenu(id);
+    }
+
+    @GetMapping("/{mealId}")
+    public Meal get(@PathVariable int mealId, @PathVariable int id) {
+        log.info("get {} restaurant id {}", mealId, id);
+        return service.get(mealId, id);
     }
 }
