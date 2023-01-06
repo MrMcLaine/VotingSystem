@@ -12,6 +12,7 @@ import org.voting.entity.Restaurant;
 import org.voting.service.RestaurantService;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.voting.util.ValidationUtil.assureIdConsistent;
 import static org.voting.util.ValidationUtil.checkNew;
@@ -51,5 +52,11 @@ public class RestaurantAdminRestController {
         log.info("update {}", id);
         assureIdConsistent(restaurant, id);
         service.update(restaurant);
+    }
+
+    @GetMapping
+    public List<Restaurant> getAll() {
+        log.info("getAll {}");
+        return service.getAll();
     }
 }

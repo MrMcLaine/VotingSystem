@@ -1,5 +1,7 @@
 package org.voting.service;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.voting.entity.Vote;
 import org.voting.repository.RestaurantRepository;
@@ -12,6 +14,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class VoteService {
 
     private VoteRepository voteRepository;
@@ -55,5 +58,9 @@ public class VoteService {
     boolean isLegal(int userId) {
         Vote getVote = getTodayVoteByUser(userId);
         return getVote == null || getVote.getVotingTime().isBefore(LocalTime.of(11, 0));
+    }
+
+    public List<Vote> getVotesByRestaurant(int restaurantId) {
+        return restaurantRepository.get(restaurantId) == null ? null : voteRepository.getVotesByRestaurant(restaurantId);
     }
 }

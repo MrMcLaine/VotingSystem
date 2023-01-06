@@ -3,7 +3,6 @@ package org.voting.web.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,6 +11,8 @@ import org.voting.service.VoteService;
 import org.voting.to.VoteTo;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.voting.SecurityUtil.authUserId;
 
@@ -39,5 +40,15 @@ public class VoteRestController {
     public VoteTo getTodayVote() {
         Vote myVote = service.getTodayVoteByUser(authUserId());
         return myVote != null ? new VoteTo(myVote) : null;
+    }
+
+    @GetMapping("/{restaurantId}")
+    public List<VoteTo> getVotesByRestaurant(@PathVariable int restaurantId) {
+        List<Vote> votes= service.getVotesByRestaurant(restaurantId);
+        List<VoteTo> listToReturn = new ArrayList<>();
+        for(Vote vote : votes) {
+            listToReturn.add(new VoteTo(vote));
+        }
+        return listToReturn;
     }
 }

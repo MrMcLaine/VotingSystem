@@ -3,13 +3,13 @@ package org.voting.entity;
 import org.voting.entity.abstractEntity.AbstractNamedEntity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "restaurants",uniqueConstraints = {@UniqueConstraint(name="restaurant_unique_name_idx",columnNames ="name")})
 public class Restaurant extends AbstractNamedEntity {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "restaurant")
-    private List<Meal> meals;
+    private Set<Meal> meals;
 
     public Restaurant() {
     }
@@ -18,7 +18,7 @@ public class Restaurant extends AbstractNamedEntity {
         this(restaurant.getId(),restaurant.getName(), restaurant.getMeals());
     }
 
-    public Restaurant(Integer id, String name, List<Meal> meals) {
+    public Restaurant(Integer id, String name, Set<Meal> meals) {
         super(id, name);
         setMeals(meals);
     }
@@ -32,11 +32,11 @@ public class Restaurant extends AbstractNamedEntity {
     }
 
 
-    public List<Meal> getMeals() {
+    public Set<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(List<Meal> meals) {
+    public void setMeals(Set<Meal> meals) {
         this.meals = meals;
     }
 

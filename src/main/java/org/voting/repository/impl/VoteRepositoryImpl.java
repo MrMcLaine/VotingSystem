@@ -7,6 +7,7 @@ import org.voting.repository.CrudVoteRepository;
 import org.voting.repository.VoteRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public class VoteRepositoryImpl implements VoteRepository {
@@ -22,5 +23,10 @@ public class VoteRepositoryImpl implements VoteRepository {
     @Override
     public Vote getVoteByUser(int userId, LocalDate date) {
         return repository.getVoteByUser(userId, date);
+    }
+
+    @Override
+    public List<Vote> getVotesByRestaurant(int restaurantId) {
+        return repository.getVotesByRestaurant(restaurantId);
     }
 }

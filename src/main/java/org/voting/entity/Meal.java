@@ -22,7 +22,7 @@ public class Meal extends AbstractBaseEntity {
     @Column(name = "date_meal", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
-    private LocalDate dateMeal;
+    private LocalDate dateMeal = LocalDate.now();
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -45,7 +45,6 @@ public class Meal extends AbstractBaseEntity {
     }
 
     public Meal(String description, int price, Restaurant restaurant) {
-        this.dateMeal = LocalDate.now();
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
@@ -57,6 +56,12 @@ public class Meal extends AbstractBaseEntity {
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
+    }
+
+    public Meal(Integer id, String description, Integer price) {
+        super(id);
+        this.description = description;
+        this.price = price;
     }
 
     public LocalDate getDateMeal() {
