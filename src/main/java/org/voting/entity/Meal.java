@@ -58,6 +58,13 @@ public class Meal extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
+    public Meal(Integer id, LocalDate date, String description, int price) {
+        super(id);
+        this.dateMeal = date;
+        this.description = description;
+        this.price = price;
+    }
+
     public Meal(Integer id, String description, Integer price) {
         super(id);
         this.description = description;
