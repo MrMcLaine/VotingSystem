@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import org.voting.entity.Restaurant;
 import org.voting.repository.RestaurantRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
@@ -42,5 +43,15 @@ public class RestaurantService {
 
     public List<Restaurant> getAll() {
         return repository.getAll();
+    }
+
+    public Restaurant getWithHistoryOfMeals(int id) {
+        Restaurant restaurant = repository.getWithHistoryOfMeals(id);
+        return restaurant != null ? restaurant : get(id);
+    }
+
+    public Restaurant getWithDaysHistoryOfMeals(int id, LocalDate date) {
+        Restaurant restaurant = repository.getWithDaysHistoryOfMeals(id, date);
+        return restaurant != null ? restaurant : get(id);
     }
 }

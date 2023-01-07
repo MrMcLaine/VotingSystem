@@ -42,4 +42,14 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     public Restaurant getWithMeals(int id) {
         return repository.getWithMeals(id, LocalDate.now());
     }
+
+    @Override
+    public Restaurant getWithHistoryOfMeals(int id) {
+        return repository.getWithHistoryOfMeals(id);
+    }
+
+    @Override
+    public Restaurant getWithDaysHistoryOfMeals(int id, LocalDate date) {
+        return repository.getWithMeals(id, date);
+    }
 }

@@ -12,6 +12,7 @@ import org.voting.entity.Restaurant;
 import org.voting.service.RestaurantService;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.voting.util.ValidationUtil.assureIdConsistent;
@@ -58,5 +59,15 @@ public class RestaurantAdminRestController {
     public List<Restaurant> getAll() {
         log.info("getAll {}");
         return service.getAll();
+    }
+
+    @GetMapping("/{id}/history")
+    public Restaurant getWithHistoryOfMeals(@PathVariable int id) {
+        return service.getWithHistoryOfMeals(id);
+    }
+
+    @GetMapping("/{id}/history/{date}")
+    public Restaurant getWithHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
+        return service.getWithDaysHistoryOfMeals(id, date);
     }
 }
