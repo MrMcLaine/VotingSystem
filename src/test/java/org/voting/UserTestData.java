@@ -1,5 +1,6 @@
 package org.voting;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.voting.entity.person.Role;
 import org.voting.entity.person.User;
 import org.voting.web.json.JsonUtil;
@@ -19,19 +20,19 @@ public class UserTestData {
     public static final int DAVID_ID = START_SEQ + 3;
     public static final int NOT_FOUND = 10;
 
-    public static final User user = new User(USER_ID, "User", "user@gmail.com", "password", Role.USER);
-    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN, Role.USER);
-    public static final User james = new User(JAMES_ID, "James", "james21@gmail.com", "james", Role.USER);
-    public static final User david = new User(DAVID_ID, "David", "david_D@gmail.com", "david", Role.USER);
+    public static final User USER = new User(USER_ID, "User", "user@gmail.com", "password", Role.USER);
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN, Role.USER);
+    public static final User JAMES = new User(JAMES_ID, "James", "james21@gmail.com", "james", Role.USER);
+    public static final User DAVID = new User(DAVID_ID, "David", "david_D@gmail.com", "david", Role.USER);
 
-    public static final List<User> users = List.of(david, james, admin, user);
+    public static final List<User> users = List.of(DAVID, JAMES, ADMIN, USER);
 
     public static User getNew() {
         return new User(null, "New", "new@gmail.com", "newPass", false, Collections.singleton(Role.USER));
     }
 
     public static User getUpdated() {
-        User updated = new User(user);
+        User updated = new User(USER);
         updated.setEmail("update@gmail.com");
         updated.setName("UpdatedName");
         updated.setPassword("newPass");
@@ -81,6 +82,4 @@ public class UserTestData {
     public static String jsonWithPassword(User user, String passw) {
         return JsonUtil.writeAdditionProps(user, "password", passw);
     }*/
-
-
 }
