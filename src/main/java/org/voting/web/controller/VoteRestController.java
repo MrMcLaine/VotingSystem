@@ -17,10 +17,10 @@ import java.util.List;
 import static org.voting.SecurityUtil.authUserId;
 
 @RestController
-@RequestMapping(VoteRestController.VOTE_URL)
+@RequestMapping(VoteRestController.REST_URL)
 public class VoteRestController {
 
-    public static final String VOTE_URL = "/rest/profile/votes";
+    public static final String REST_URL = "/rest/profile/votes";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -32,7 +32,7 @@ public class VoteRestController {
         Vote created = service.save(restaurantId, authUserId());
         log.info("save Vote with RestaurantId={}", restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .buildAndExpand(VOTE_URL + "/{id}").toUri();
+                .buildAndExpand(REST_URL + "/{id}").toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
