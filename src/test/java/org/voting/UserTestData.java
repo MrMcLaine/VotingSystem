@@ -1,6 +1,5 @@
 package org.voting;
 
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.voting.entity.person.Role;
 import org.voting.entity.person.User;
 import org.voting.web.json.JsonUtil;
@@ -21,7 +20,7 @@ public class UserTestData {
     public static final int NOT_FOUND = 10;
 
     public static final User USER = new User(USER_ID, "User", "user@gmail.com", "password", Role.USER);
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN, Role.USER);
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN);
     public static final User JAMES = new User(JAMES_ID, "James", "james21@gmail.com", "james", Role.USER);
     public static final User DAVID = new User(DAVID_ID, "David", "david_D@gmail.com", "david", Role.USER);
 
