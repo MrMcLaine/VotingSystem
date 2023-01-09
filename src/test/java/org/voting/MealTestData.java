@@ -39,7 +39,7 @@ public class MealTestData {
     public static final Meal mealAtelierCrenn5 = new Meal(MEAL1_ATELIERCRENN_ID + 4,
             "Second test meal in past", 1);
 
-    public static final List<Meal> mealsCentralForToday = List.of(mealCentral3, mealCentral2, mealCentral1);
+    public static final List<Meal> mealsCentralForToday = List.of(mealCentral1, mealCentral2, mealCentral3);
 
     public static final List<Meal> mealsAllDates = List.of(mealAtelierCrenn5, mealAtelierCrenn4, mealAtelierCrenn3,
             mealAtelierCrenn2, mealAtelierCrenn1, mealBonBon3, mealBonBon2,

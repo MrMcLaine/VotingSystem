@@ -109,7 +109,6 @@ public class Meal extends AbstractBaseEntity {
                "dateMeal=" + dateMeal +
                ", description='" + description + '\'' +
                ", price=" + price +
-               ", restaurant=" + restaurant +
                ", id=" + id +
                '}';
     }

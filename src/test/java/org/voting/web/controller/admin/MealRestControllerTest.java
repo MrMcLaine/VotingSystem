@@ -11,6 +11,8 @@ import org.voting.util.exception.NotFoundException;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -20,7 +22,6 @@ import static org.voting.MealTestData.NOT_FOUND;
 import static org.voting.RestaurantTestData.CENTRAL_ID;
 import static org.voting.TestUtil.userHttpBasic;
 import static org.voting.UserTestData.ADMIN;
-import static org.voting.UserTestData.USER;
 
 
 public class MealRestControllerTest extends AbstractControllerTest {
@@ -43,7 +44,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newMeal.setId(newId);
         MEAL_MATCHER.assertMatch(created, newMeal);
-        MEAL_MATCHER.assertMatch(service.getActualMenu(CENTRAL_ID), mealCentral1, mealCentral2, mealCentral3, created);
+        MEAL_MATCHER.assertMatch(service.getActualMenu(CENTRAL_ID), created, mealCentral1, mealCentral2, mealCentral3);
     }
 
     @Test
@@ -68,7 +69,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void getActualMenu() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + CENTRAL_ID)
+        perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
         MEAL_MATCHER.assertMatch(service.getActualMenu(CENTRAL_ID), mealsCentralForToday);
@@ -76,7 +77,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void get() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + CENTRAL_ID, MEAL1_CENTRAL_ID)
+        perform(MockMvcRequestBuilders.get(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -94,13 +95,13 @@ public class MealRestControllerTest extends AbstractControllerTest {
     @Test
     public void getForbidden() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID)
-                .with(userHttpBasic(USER)))
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     public void getNotFound() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND)
+        perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity());
