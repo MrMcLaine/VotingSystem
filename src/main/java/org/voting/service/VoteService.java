@@ -32,18 +32,6 @@ public class VoteService {
         return voteRepository.getVoteByUser(userId, LocalDate.now());
     }
 
-    public Vote create(Vote vote) {
-        return null;
-    }
-
-    public Vote update(Vote vote) {
-        return null;
-    }
-
-    public List<Vote> getAllByRestaurant(int restaurantId) {
-        return null;
-    }
-
     public Vote save(int restaurantId, int userId) {
         if (isLegal(userId)) {
             Vote vote = new Vote();
@@ -55,7 +43,7 @@ public class VoteService {
         }
     }
 
-    boolean isLegal(int userId) {
+    private boolean isLegal(int userId) {
         Vote getVote = getTodayVoteByUser(userId);
         return getVote == null || getVote.getVotingTime().isBefore(LocalTime.of(11, 0));
     }
