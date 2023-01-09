@@ -1,5 +1,7 @@
 package org.voting.util;
 
+import org.springframework.core.NestedExceptionUtils;
+import org.springframework.lang.NonNull;
 import org.voting.HasId;
 import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.util.exception.IllegalRequestDataException;
@@ -40,5 +42,11 @@ public class ValidationUtil {
         } else if (entity.getId() != id) {
             throw new IllegalArgumentException(entity + " must be with id=" + id);
         }
+    }
+
+    @NonNull
+    public static Throwable getRootCause(@NonNull Throwable t) {
+        Throwable rootCause = NestedExceptionUtils.getRootCause(t);
+        return rootCause != null ? rootCause : t;
     }
 }

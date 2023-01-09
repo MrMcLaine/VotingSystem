@@ -117,7 +117,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(USER_MATCHER.contentJson(ADMIN, JAMES, USER, DAVID));
+                .andExpect(USER_MATCHER.contentJson(ADMIN, DAVID, JAMES, USER));
     }
 
     @Test

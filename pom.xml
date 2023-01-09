@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>18</java.version>
         <spring.version>5.3.24</spring.version>
         <spring.security.version>5.8.0</spring.security.version>
         <spring-data-jpa.version>2.7.6</spring-data-jpa.version>
@@ -237,7 +237,7 @@
         </dependency>
 
         <!-- Webjars (static dependencies distributed as JAR files) -->
-        <dependency>
+    <!--    <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
             <version>${webjars-jquery.version}</version>
@@ -252,7 +252,7 @@
                     <artifactId>jquery</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <!--JSON-->
         <dependency>
