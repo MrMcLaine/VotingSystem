@@ -49,9 +49,9 @@
 
 <div class="user div">
     <h2>Options for User</h2>
-    <li><a href="${pageContext.request.contextPath}/rest/profile">User profile</a></li>
-    <li><a href="">Update user's profile</a></li>
-    <li><a href="">Delete user's profile</a></li>
+    <li><a href="${pageContext.request.contextPath}/rest/profile" class="dealWithoutVisual">User profile</a></li>
+    <li><a href="" class="dealWithoutVisual">Update user's profile</a></li>
+    <li><a href="" class="dealWithoutVisual">Delete user's profile</a></li>
     <li><a href="${pageContext.request.contextPath}/rest/profile/restaurants" class="deal">All restaurants</a></li>
     <li><a href="${pageContext.request.contextPath}/rest/profile/restaurants?withMenu=true" class="deal">The restaurants with
         menu</a></li>
@@ -61,8 +61,8 @@
         with menu</a></li>
     <br>
     <li><a href="">Give vote by restaurantId</a></li>
-    <li><a href="/rest/profile/votes/today">Today user's vote</a></li>
-    <li><a href="">User's votes</a></li>
+    <li><a href="/rest/profile/votes/today" class="deal">Today user's vote</a></li>
+    <li><a href="/rest/profile/votes/100005" class="deal">User's votes by restaurant(for example - restaurant with ID=100005)</a></li>
     <br>
     <li><a href="/rest/admin/restaurants/100006/history" class="deal">Get history of restaurant's menu by restaurant's ID(for example - 100006)</a></li>
     <li><a href="/rest/admin/restaurants/100006/history/2022-12-31" class="deal">Get history of restaurant's menu by restaurant's ID by date(for example - 100006 & 2022-12-31)</a></li>

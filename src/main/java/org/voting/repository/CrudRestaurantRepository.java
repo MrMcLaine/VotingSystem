@@ -24,4 +24,7 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     @Query("SELECT restaurant FROM Restaurant restaurant " +
            "LEFT JOIN FETCH restaurant.meals meal WHERE restaurant.id=:id")
     Restaurant getWithHistoryOfMeals(@Param("id") int id);
+
+    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.meals WHERE r.id = ?1")
+    Restaurant getWithMeals(int id);
 }

@@ -10,7 +10,6 @@ import org.voting.repository.MealRepository;
 
 import java.util.List;
 
-import static org.voting.util.RestaurantUtil.deleteProxy;
 
 @Repository
 public class MealRepositoryImpl implements MealRepository {
@@ -33,7 +32,9 @@ public class MealRepositoryImpl implements MealRepository {
         if (!meal.isNew() && get(meal.id(), restaurantId) == null) {
             return null;
         }
-        meal.setRestaurant(deleteProxy(crudRestaurantRepository.getReferenceById(restaurantId)));
+        meal.setRestaurant(crudRestaurantRepository.getReferenceById(restaurantId));
+/*        Restaurant t = (crudRestaurantRepository.getWithMeals(restaurantId));
+        meal.setRestaurant(t);*/
         return crudMealRepository.save(meal);
     }
 

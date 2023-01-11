@@ -3,6 +3,8 @@ package org.voting.repository.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.voting.entity.Vote;
+import org.voting.repository.CrudRestaurantRepository;
+import org.voting.repository.CrudUserRepository;
 import org.voting.repository.CrudVoteRepository;
 import org.voting.repository.VoteRepository;
 
@@ -13,20 +15,29 @@ import java.util.List;
 public class VoteRepositoryImpl implements VoteRepository {
 
     @Autowired
-    private CrudVoteRepository repository;
+    private CrudVoteRepository voteRepository;
+
+    @Autowired
+    private CrudUserRepository userRepository;
+
+    @Autowired
+    CrudRestaurantRepository restaurantRepository;
 
     @Override
-    public Vote save(Vote vote) {
-        return repository.save(vote);
+    public Vote save(int userId, int restaurantId) {
+        Vote vote = new Vote();
+        vote.setUser(userRepository.findById(userId).orElse(null));
+        vote.setRestaurant(restaurantRepository.getWithMeals(restaurantId));
+        return voteRepository.save(vote);
     }
 
     @Override
     public Vote getVoteByUser(int userId, LocalDate date) {
-        return repository.getVoteByUser(userId, date);
+        return voteRepository.getVoteByUser(userId, date);
     }
 
     @Override
     public List<Vote> getVotesByRestaurant(int restaurantId) {
-        return repository.getVotesByRestaurant(restaurantId);
+        return voteRepository.getVotesByRestaurant(restaurantId);
     }
 }

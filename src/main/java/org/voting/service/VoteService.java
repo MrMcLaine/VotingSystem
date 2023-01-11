@@ -34,10 +34,7 @@ public class VoteService {
 
     public Vote save(int restaurantId, int userId) {
         if (isLegal(userId)) {
-            Vote vote = new Vote();
-            vote.setUser(userRepository.get(userId));
-            vote.setRestaurant(restaurantRepository.get(restaurantId));
-            return voteRepository.save(vote);
+            return voteRepository.save(userId, restaurantId);
         } else {
             throw new VotingTimeException("Sorry, but voting time is over.");
         }

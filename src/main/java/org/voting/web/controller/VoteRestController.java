@@ -27,16 +27,16 @@ public class VoteRestController {
     @Autowired
     private VoteService service;
 
-    @PutMapping
-    public ResponseEntity<Vote> vote(@RequestParam int restaurantId) {
+    @PostMapping("/{restaurantId}")
+    public ResponseEntity<Vote> vote(@PathVariable int restaurantId) {
         Vote created = service.save(restaurantId, authUserId());
         log.info("save Vote with RestaurantId={}", restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .buildAndExpand(REST_URL + "/{id}").toUri();
+                .buildAndExpand(REST_URL + "/{restaurantId}").toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @GetMapping("/today") /*(produces = MediaType.APPLICATION_JSON_VALUE)*/
+    @GetMapping("/today")
     public VoteTo getTodayVote() {
         Vote myVote = service.getTodayVoteByUser(authUserId());
         return myVote != null ? new VoteTo(myVote) : null;

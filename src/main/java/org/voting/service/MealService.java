@@ -3,10 +3,8 @@ package org.voting.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.voting.entity.Meal;
-import org.voting.entity.person.User;
 import org.voting.repository.MealRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
