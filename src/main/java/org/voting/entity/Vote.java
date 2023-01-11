@@ -55,6 +55,12 @@ public class Vote extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
+    public Vote(Integer id, Restaurant restaurant, User user) {
+        super(id);
+        this.restaurant = restaurant;
+        this.user = user;
+    }
+
     public Vote(Restaurant restaurant, LocalDateTime dateTimeVote) {
         this(null,restaurant,dateTimeVote);
     }

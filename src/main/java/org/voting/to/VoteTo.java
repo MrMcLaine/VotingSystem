@@ -34,4 +34,24 @@ public class VoteTo {
                ", restaurantName='" + restaurantName + '\'' +
                '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof VoteTo voteTo)) return false;
+
+        if (!id.equals(voteTo.id)) return false;
+        if (!email.equals(voteTo.email)) return false;
+        if (!date.equals(voteTo.date)) return false;
+        return restaurantName.equals(voteTo.restaurantName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + restaurantName.hashCode();
+        return result;
+    }
 }
