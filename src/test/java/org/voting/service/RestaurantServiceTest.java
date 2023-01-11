@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.voting.MealTestData.mealsAtelierCrennAllDates;
 import static org.voting.MealTestData.mealsCentralForToday;
 import static org.voting.RestaurantTestData.*;
 
@@ -22,6 +23,7 @@ class RestaurantServiceTest extends AbstractServiceTest{
     @Test
     void get() {
         Restaurant restaurant = service.get(CENTRAL_ID);
+        restaurant.setMeals(null);
         RESTAURANT_MATCHER.assertMatch(restaurant, central);
     }
 
@@ -69,11 +71,17 @@ class RestaurantServiceTest extends AbstractServiceTest{
     @Test
     void getAll() {
         List<Restaurant> all = service.getAll();
-        RESTAURANT_MATCHER.assertMatch(all, central, bonBon, atelierCrenn);
+        for(Restaurant r : all) {
+            r.setMeals(null);
+        }
+        RESTAURANT_MATCHER.assertMatch(all, atelierCrenn, bonBon, central);
     }
 
     @Test
     void getWithHistoryOfMeals() {
+        Restaurant atelierCrennTest = service.getWithHistoryOfMeals(ATELIER_CRENN_ID);
+        atelierCrenn.setMeals(new HashSet<>(mealsAtelierCrennAllDates));
+        RESTAURANT_MATCHER.assertMatch(atelierCrennTest, atelierCrenn);
     }
 
     @Test

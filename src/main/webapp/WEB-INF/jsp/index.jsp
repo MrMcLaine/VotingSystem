@@ -67,7 +67,7 @@
     <li><a href="/rest/admin/restaurants/100006/history" class="deal">Get history of restaurant's menu by restaurant's ID(for example - 100006)</a></li>
     <li><a href="/rest/admin/restaurants/100006/history/2022-12-31" class="deal">Get history of restaurant's menu by restaurant's ID by date(for example - 100006 & 2022-12-31)</a></li>
     <br>
-    <li><a href="/rest/profile/votes/100005">History user's votes by restaurant(for example - 1000005)</a></li>
+    <li><a href="/rest/profile/votes/100005" class="deal">History user's votes by restaurant(for example - 1000005)</a></li>
     <li><a href="">History user's votes by date</a></li>
 </div>
 

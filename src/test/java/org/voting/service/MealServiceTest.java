@@ -32,7 +32,7 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void getNotOwn() {
-        assertThrows(NotFoundException.class, () -> service.get(MEAL1_CENTRAL_ID, CENTRAL_ID));
+        assertThrows(NotFoundException.class, () -> service.get(MEAL1_CENTRAL_ID, BONBON_ID));
     }
 
     @Test
@@ -53,9 +53,8 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void updateNotOwn() {
-        NotFoundException exception = assertThrows(NotFoundException.class, () -> service.update(getUpdated(), CENTRAL_ID));
-        Assertions.assertEquals("Not found entity with id=" + MEAL1_CENTRAL_ID, exception.getMessage());
-        MEAL_MATCHER.assertMatch(service.get(MEAL1_CENTRAL_ID, BONBON_ID), mealCentral1);
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> service.update(getUpdated(), BONBON_ID));
+        Assertions.assertEquals("Not found entity with id=" + BONBON_ID, exception.getMessage());
     }
 
     @Test
@@ -71,7 +70,7 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void deleteNotOwn() {
-        assertThrows(NotFoundException.class, () -> service.delete(MEAL1_CENTRAL_ID, CENTRAL_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(MEAL1_CENTRAL_ID, BONBON_ID));
     }
 
     @Test

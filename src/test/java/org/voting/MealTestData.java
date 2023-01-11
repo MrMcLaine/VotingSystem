@@ -41,9 +41,8 @@ public class MealTestData {
 
     public static final List<Meal> mealsCentralForToday = List.of(mealCentral1, mealCentral2, mealCentral3);
 
-    public static final List<Meal> mealsAllDates = List.of(mealAtelierCrenn5, mealAtelierCrenn4, mealAtelierCrenn3,
-            mealAtelierCrenn2, mealAtelierCrenn1, mealBonBon3, mealBonBon2,
-            mealBonBon1, mealCentral3, mealCentral2, mealCentral1);
+    public static final List<Meal> mealsAtelierCrennAllDates = List.of(mealAtelierCrenn1, mealAtelierCrenn2,
+            mealAtelierCrenn3, mealAtelierCrenn4, mealAtelierCrenn5);
 
     public static Meal getNew() {
         return new Meal(null, "New Meal", 2);
