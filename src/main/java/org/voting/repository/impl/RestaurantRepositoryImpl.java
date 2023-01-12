@@ -40,7 +40,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant getWithMeals(int id) {
-        return repository.getWithMeals(id, LocalDate.now());
+        return repository.get(id, LocalDate.now());
     }
 
     @Override
@@ -50,6 +50,6 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant getWithDaysHistoryOfMeals(int id, LocalDate date) {
-        return repository.getWithMeals(id, date);
+        return repository.get(id, date);
     }
 }

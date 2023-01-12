@@ -1,11 +1,9 @@
 package org.voting.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.voting.View;
 import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.util.DateTimeUtil;
 
@@ -37,8 +35,6 @@ public class Meal extends AbstractBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
-    @NotNull(groups = View.Persist.class)
     private Restaurant restaurant;
 
     public Meal() {

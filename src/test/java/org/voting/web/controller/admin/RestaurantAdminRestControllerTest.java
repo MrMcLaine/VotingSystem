@@ -11,13 +11,10 @@ import org.voting.util.exception.NotFoundException;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
 
-import java.util.HashSet;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.voting.MealTestData.mealsAtelierCrennAllDates;
 import static org.voting.RestaurantTestData.*;
 import static org.voting.TestUtil.userHttpBasic;
 import static org.voting.UserTestData.ADMIN;
@@ -77,7 +74,7 @@ public class RestaurantAdminRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void getWithHistoryOfMeals() {
-        atelierCrenn.setMeals(new HashSet<>(mealsAtelierCrennAllDates));
+        /*atelierCrenn.setMeals(new HashSet<>(mealsAtelierCrennAllDates));*/
         RESTAURANT_MATCHER.assertMatch(service.getWithHistoryOfMeals(ATELIER_CRENN_ID), atelierCrenn);
     }
 

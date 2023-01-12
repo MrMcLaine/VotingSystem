@@ -29,7 +29,7 @@ public class VoteRepositoryImpl implements VoteRepository {
     public Vote save(int userId, int restaurantId) {
         Vote vote = new Vote();
         vote.setUser(userRepository.findById(userId).orElse(null));
-        vote.setRestaurant(restaurantRepository.getWithMeals(restaurantId));
+        vote.setRestaurant(restaurantRepository.get(restaurantId));
         return voteRepository.save(vote);
     }
 

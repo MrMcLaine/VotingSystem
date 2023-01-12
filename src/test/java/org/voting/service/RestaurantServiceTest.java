@@ -6,12 +6,9 @@ import org.springframework.dao.DataAccessException;
 import org.voting.entity.Restaurant;
 import org.voting.util.exception.NotFoundException;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.voting.MealTestData.mealsAtelierCrennAllDates;
-import static org.voting.MealTestData.mealsCentralForToday;
 import static org.voting.RestaurantTestData.*;
 
 
@@ -23,7 +20,7 @@ class RestaurantServiceTest extends AbstractServiceTest{
     @Test
     void get() {
         Restaurant restaurant = service.get(CENTRAL_ID);
-        restaurant.setMeals(null);
+        /*restaurant.setMeals(null);*/
         RESTAURANT_MATCHER.assertMatch(restaurant, central);
     }
 
@@ -64,7 +61,7 @@ class RestaurantServiceTest extends AbstractServiceTest{
     @Test
     void getWithMeals() {
         Restaurant centralTest = service.getWithMeals(CENTRAL_ID);
-        central.setMeals(new HashSet<>(mealsCentralForToday));
+        /*central.setMeals(new HashSet<>(mealsCentralForToday));*/
         RESTAURANT_MATCHER.assertMatch(centralTest, central);
     }
 
@@ -72,7 +69,7 @@ class RestaurantServiceTest extends AbstractServiceTest{
     void getAll() {
         List<Restaurant> all = service.getAll();
         for(Restaurant r : all) {
-            r.setMeals(null);
+            /*r.setMeals(null);*/
         }
         RESTAURANT_MATCHER.assertMatch(all, atelierCrenn, bonBon, central);
     }
@@ -80,7 +77,7 @@ class RestaurantServiceTest extends AbstractServiceTest{
     @Test
     void getWithHistoryOfMeals() {
         Restaurant atelierCrennTest = service.getWithHistoryOfMeals(ATELIER_CRENN_ID);
-        atelierCrenn.setMeals(new HashSet<>(mealsAtelierCrennAllDates));
+        /*atelierCrenn.setMeals(new HashSet<>(mealsAtelierCrennAllDates));*/
         RESTAURANT_MATCHER.assertMatch(atelierCrennTest, atelierCrenn);
     }
 

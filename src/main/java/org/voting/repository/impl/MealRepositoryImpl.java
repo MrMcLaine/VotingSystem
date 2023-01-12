@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.voting.entity.Meal;
+import org.voting.entity.Restaurant;
 import org.voting.repository.CrudMealRepository;
 import org.voting.repository.CrudRestaurantRepository;
 import org.voting.repository.MealRepository;
@@ -32,9 +33,8 @@ public class MealRepositoryImpl implements MealRepository {
         if (!meal.isNew() && get(meal.id(), restaurantId) == null) {
             return null;
         }
-        meal.setRestaurant(crudRestaurantRepository.getReferenceById(restaurantId));
-/*        Restaurant t = (crudRestaurantRepository.getWithMeals(restaurantId));
-        meal.setRestaurant(t);*/
+        Restaurant t = (crudRestaurantRepository.get(restaurantId));
+        meal.setRestaurant(t);
         return crudMealRepository.save(meal);
     }
 
