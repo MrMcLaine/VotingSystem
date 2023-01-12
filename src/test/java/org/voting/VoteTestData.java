@@ -13,7 +13,7 @@ import static org.voting.entity.abstractEntity.AbstractBaseEntity.START_SEQ;
 public class VoteTestData {
 
     public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory
-            .usingIgnoringFieldsComparator(Vote.class, "votingTime");
+            .usingIgnoringFieldsComparator(Vote.class, "votingTime", "restaurant.meals");
 
     public static final User TEMP_USER = new User(222222, "Temp User",
             "temp@gmail.com","password", Role.USER);
