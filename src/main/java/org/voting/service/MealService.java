@@ -4,10 +4,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.voting.entity.Meal;
 import org.voting.repository.MealRepository;
+import org.voting.to.MealTo;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.voting.util.MealsUtil.convertListToMealTo;
 import static org.voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -18,8 +20,8 @@ public class MealService {
         this.repository = repository;
     }
 
-    public Meal get(int id, int restaurantId) {
-        return checkNotFoundWithId(repository.get(id, restaurantId), restaurantId);
+    public MealTo get(int id, int restaurantId) {
+        return new MealTo(checkNotFoundWithId(repository.get(id, restaurantId), restaurantId));
     }
 
     public Meal create(Meal meal, int restaurantId) {
@@ -36,16 +38,12 @@ public class MealService {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
-    public List<Meal> getActualMenu(int restaurantId) {
-        return repository.getActualMenu(restaurantId);
+    public List<MealTo> getMenuForDate(int restaurantId, LocalDate date) {
+        return convertListToMealTo(repository.getMenuForDate(restaurantId, date));
     }
 
-    public List<Meal> getOnePastDayHistoryMenu(int restaurantId, LocalDate date) {
-        return repository.getOnePastDayHistoryMenu(restaurantId, date);
-    }
-
-    public List<Meal> getHistoryOfMenu(int restaurantId) {
-        return repository.getHistoryOfMenu(restaurantId);
+    public List<MealTo> getHistoryOfMenu(int restaurantId) {
+        return convertListToMealTo(repository.getHistoryOfMenu(restaurantId));
     }
 
 }

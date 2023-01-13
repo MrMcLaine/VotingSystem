@@ -1,6 +1,5 @@
 package org.voting.to;
 
-import org.voting.entity.Meal;
 import org.voting.entity.Restaurant;
 
 import java.util.List;
@@ -8,14 +7,14 @@ import java.util.List;
 public class RestaurantTo {
     private Integer id;
     private String name;
-    private List<Meal> meals;
+    private List<MealTo> mealsTo;
 
     public RestaurantTo() {
     }
 
-    public RestaurantTo(Restaurant restaurant, List<Meal> meals) {
+    public RestaurantTo(Restaurant restaurant, List<MealTo> mealsTo) {
         this.id = restaurant.getId();
         this.name = restaurant.getName();
-        this.meals = meals;
+        this.mealsTo = mealsTo;
     }
 }

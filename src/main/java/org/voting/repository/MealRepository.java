@@ -14,7 +14,7 @@ public interface MealRepository {
 
     List<Meal> getActualMenu(int restaurantId);
 
-    List<Meal> getOnePastDayHistoryMenu(int restaurantId, LocalDate date);
+    List<Meal> getMenuForDate(int restaurantId, LocalDate date);
 
     List<Meal> getHistoryOfMenu(int restaurantId);
 }

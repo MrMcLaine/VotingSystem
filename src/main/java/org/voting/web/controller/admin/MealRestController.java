@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.voting.entity.Meal;
 import org.voting.service.MealService;
+import org.voting.to.MealTo;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -56,13 +57,13 @@ public class MealRestController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Meal> getActualMenu(@PathVariable int id) {
+    public List<MealTo> getActualMenu(@PathVariable int id) {
         log.info("getDateMenu with id {} by date {}", id, LocalDate.now());
-        return service.getActualMenu(id);
+        return service.getMenuForDate(id, LocalDate.now());
     }
 
     @GetMapping("/{mealId}")
-    public Meal get(@PathVariable int mealId, @PathVariable int id) {
+    public MealTo get(@PathVariable int mealId, @PathVariable int id) {
         log.info("get {} restaurant id {}", mealId, id);
         return service.get(mealId, id);
     }

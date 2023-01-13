@@ -8,10 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.voting.entity.Meal;
 import org.voting.entity.Restaurant;
 import org.voting.service.MealService;
 import org.voting.service.RestaurantService;
+import org.voting.to.MealTo;
 import org.voting.to.RestaurantTo;
 
 import java.net.URI;
@@ -70,14 +70,14 @@ public class RestaurantAdminRestController {
     @GetMapping("/{id}/history")
     public RestaurantTo getWithHistoryOfMeals(@PathVariable int id) {
         log.info("getWithHistoryOfMeals by restaurant with id {}", id);
-        List<Meal> meals = mealService.getHistoryOfMenu(id);
-        return new RestaurantTo(restaurantService.get(id), meals);
+        List<MealTo> mealsTo = mealService.getHistoryOfMenu(id);
+        return new RestaurantTo(restaurantService.get(id), mealsTo);
     }
 
     @GetMapping("/{id}/history/{date}")
     public RestaurantTo getWithOnePastDayHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
         log.info("getWithOnePastDayHistoryOfMeals by restaurant with id {}", id);
-        List<Meal> meals = mealService.getOnePastDayHistoryMenu(id, date);
-        return new RestaurantTo(restaurantService.get(id), meals);
+        List<MealTo> mealsTo = mealService.getMenuForDate(id, date);
+        return new RestaurantTo(restaurantService.get(id), mealsTo);
     }
 }

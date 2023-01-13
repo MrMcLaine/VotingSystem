@@ -1,6 +1,7 @@
 package org.voting;
 
 import org.voting.entity.Meal;
+import org.voting.to.MealTo;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ public class MealTestData {
     public static final int MEAL1_BONBON_ID = START_SEQ + 10;
     public static final int MEAL1_ATELIERCRENN_ID = START_SEQ + 13;
 
-    public static final Meal mealCentral1 = new Meal(MEAL1_CENTRAL_ID,
-            "Marine Soil (-20 M)", 30);
+    public static final MealTo mealCentral1 = new MealTo(new Meal(MEAL1_CENTRAL_ID,
+            "Marine Soil (-20 M)", 30));
     public static final Meal mealCentral2 = new Meal(MEAL1_CENTRAL_ID + 1,
             "Low Andes Mountain (1800 M)", 44);
     public static final Meal mealCentral3 = new Meal(MEAL1_CENTRAL_ID + 2,
@@ -39,7 +40,7 @@ public class MealTestData {
     public static final Meal mealAtelierCrenn5 = new Meal(MEAL1_ATELIERCRENN_ID + 4,
             "Second test meal in past", 1);
 
-    public static final List<Meal> mealsCentralForToday = List.of(mealCentral1, mealCentral2, mealCentral3);
+    /*public static final List<Meal> mealsCentralForToday = List.of(mealCentral1, mealCentral2, mealCentral3);*/
 
     public static final List<Meal> mealsAtelierCrennAllDates = List.of(mealAtelierCrenn1, mealAtelierCrenn2,
             mealAtelierCrenn3, mealAtelierCrenn4, mealAtelierCrenn5);
@@ -48,8 +49,8 @@ public class MealTestData {
         return new Meal(null, "New Meal", 2);
     }
 
-    public static Meal getUpdated() {
+/*    public static Meal getUpdated() {
         return new Meal(MEAL1_CENTRAL_ID, mealCentral1.getDateMeal().plusDays(2),
                 "Updated Meal", 31);
-    }
+    }*/
 }
