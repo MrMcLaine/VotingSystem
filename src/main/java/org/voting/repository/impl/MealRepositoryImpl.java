@@ -9,6 +9,7 @@ import org.voting.repository.CrudMealRepository;
 import org.voting.repository.CrudRestaurantRepository;
 import org.voting.repository.MealRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -45,6 +46,16 @@ public class MealRepositoryImpl implements MealRepository {
 
     @Override
     public List<Meal> getActualMenu(int restaurantId) {
-        return crudMealRepository.getAll(restaurantId);
+        return null;
+    }
+
+    @Override
+    public List<Meal> getOnePastDayHistoryMenu(int restaurantId, LocalDate date) {
+        return crudMealRepository.getDateMenu(restaurantId, date);
+    }
+
+    @Override
+    public List<Meal> getHistoryOfMenu(int restaurantId) {
+        return crudMealRepository.getHistoryOfMenu(restaurantId);
     }
 }

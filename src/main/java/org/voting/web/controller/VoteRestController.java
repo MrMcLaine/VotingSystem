@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 import static org.voting.SecurityUtil.authUserId;
-import static org.voting.util.VoteUtil.convertListToVoteTo;
+import static org.voting.util.VotesUtil.convertListToVoteTo;
 
 @RestController
 @RequestMapping(VoteRestController.REST_URL)
@@ -45,7 +45,7 @@ public class VoteRestController {
 
     @GetMapping("/{restaurantId}")
     public List<VoteTo> getVotesByRestaurant(@PathVariable int restaurantId) {
-        List<Vote> votes= service.getVotesByRestaurant(restaurantId);
+        List<Vote> votes = service.getVotesByRestaurant(restaurantId);
         return convertListToVoteTo(votes);
     }
 }

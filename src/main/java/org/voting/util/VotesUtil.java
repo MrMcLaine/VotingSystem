@@ -6,10 +6,10 @@ import org.voting.to.VoteTo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VoteUtil {
+public class VotesUtil {
     public static List<VoteTo> convertListToVoteTo(List<Vote> votes) {
         List<VoteTo> resultList = new ArrayList<>();
-        for(Vote vote : votes) {
+        for (Vote vote : votes) {
             resultList.add(new VoteTo(vote));
         }
         return resultList;

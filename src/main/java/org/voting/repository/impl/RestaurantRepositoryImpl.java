@@ -40,7 +40,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant getWithMeals(int id) {
-        return repository.getWithMeals(id, LocalDate.now());
+        return repository.getWithMeals(id);
     }
 
     @Override

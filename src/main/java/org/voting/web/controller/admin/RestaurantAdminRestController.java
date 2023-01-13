@@ -8,8 +8,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.voting.entity.Meal;
 import org.voting.entity.Restaurant;
+import org.voting.service.MealService;
 import org.voting.service.RestaurantService;
+import org.voting.to.RestaurantTo;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -19,21 +22,24 @@ import static org.voting.util.ValidationUtil.assureIdConsistent;
 import static org.voting.util.ValidationUtil.checkNew;
 
 @RestController
-@RequestMapping(value=RestaurantAdminRestController.REST_URL,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = RestaurantAdminRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantAdminRestController {
 
-    public static final String REST_URL="/rest/admin/restaurants";
+    public static final String REST_URL = "/rest/admin/restaurants";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private RestaurantService service;
+    private RestaurantService restaurantService;
+
+    @Autowired
+    private MealService mealService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant){
-        log.info("create {}",restaurant);
+    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
+        log.info("create {}", restaurant);
         checkNew(restaurant);
-        Restaurant createdRestaurant=service.create(restaurant);
+        Restaurant createdRestaurant = restaurantService.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(createdRestaurant.getId()).toUri();
@@ -42,32 +48,36 @@ public class RestaurantAdminRestController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         log.info("delete {}", id);
-        service.delete(id);
+        restaurantService.delete(id);
     }
 
-    @PutMapping(value="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable int id, @RequestBody Restaurant restaurant){
+    public void update(@PathVariable int id, @RequestBody Restaurant restaurant) {
         log.info("update {}", id);
         assureIdConsistent(restaurant, id);
-        service.update(restaurant);
+        restaurantService.update(restaurant);
     }
 
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("getAll {}");
-        return service.getAll();
+        return restaurantService.getAll();
     }
 
     @GetMapping("/{id}/history")
-    public Restaurant getWithHistoryOfMeals(@PathVariable int id) {
-        return service.getWithHistoryOfMeals(id);
+    public RestaurantTo getWithHistoryOfMeals(@PathVariable int id) {
+        log.info("getWithHistoryOfMeals by restaurant with id {}", id);
+        List<Meal> meals = mealService.getHistoryOfMenu(id);
+        return new RestaurantTo(restaurantService.get(id), meals);
     }
 
     @GetMapping("/{id}/history/{date}")
-    public Restaurant getWithHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
-        return service.getWithDaysHistoryOfMeals(id, date);
+    public RestaurantTo getWithOnePastDayHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
+        log.info("getWithOnePastDayHistoryOfMeals by restaurant with id {}", id);
+        List<Meal> meals = mealService.getOnePastDayHistoryMenu(id, date);
+        return new RestaurantTo(restaurantService.get(id), meals);
     }
 }

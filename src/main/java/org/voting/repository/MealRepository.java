@@ -1,7 +1,6 @@
 package org.voting.repository;
 
 import org.voting.entity.Meal;
-import org.voting.entity.person.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +14,7 @@ public interface MealRepository {
 
     List<Meal> getActualMenu(int restaurantId);
 
+    List<Meal> getOnePastDayHistoryMenu(int restaurantId, LocalDate date);
+
+    List<Meal> getHistoryOfMenu(int restaurantId);
 }

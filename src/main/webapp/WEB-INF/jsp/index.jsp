@@ -58,7 +58,7 @@
         menu</a></li>
     <li><a href="/rest/profile/restaurants/100005" class="deal">Get restaurant by
         ID(for example => ID = 100005)</a></li>
-    <li><a href="/rest/profile/restaurants/100004?withMenu=true" <%--class="deal"--%>>Get restaurant by ID
+    <li><a href="/rest/profile/restaurants/100004?withMenu=true" class="deal">Get restaurant by ID
         with menu(for example - 100005)</a></li>
     <br>
     <li><a href="" class="dealWithoutVisual">Vote by restaurantId</a></li>
@@ -68,7 +68,7 @@
     <br>
     <li><a href="/rest/admin/restaurants/100006/history" <%--class="deal"--%>>Get history of restaurant's menu by restaurant's
         ID(for example - 100006)</a></li>
-    <li><a href="/rest/admin/restaurants/100006/history/2022-12-31" <%--class="deal"--%>>Get history of restaurant's menu by
+    <li><a href="/rest/admin/restaurants/100006/history/2022-12-31" class="deal">Get history of restaurant's menu by
         restaurant's ID by date(for example - 100006 & 2022-12-31)</a></li>
     <br>
     <li><a href="/rest/profile/votes/100005" class="deal">History user's votes by restaurant(for example - 1000005)</a>
