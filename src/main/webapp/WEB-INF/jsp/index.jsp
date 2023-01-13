@@ -54,11 +54,11 @@
     <li><a href="" class="dealWithoutVisual">Update user's profile</a></li>
     <li><a href="" class="dealWithoutVisual">Delete user's profile</a></li>
     <li><a href="/rest/profile/restaurants" class="deal">All restaurants</a></li>
-    <li><a href="/rest/profile/restaurants?withMenu=true" <%--class="deal"--%>>The restaurants with
+    <li><a href="/rest/profile/restaurants/withMeals" class="deal">The restaurants with
         menu</a></li>
     <li><a href="/rest/profile/restaurants/100005" class="deal">Get restaurant by
         ID(for example => ID = 100005)</a></li>
-    <li><a href="/rest/profile/restaurants/100004?withMenu=true" <%--class="deal"--%>>Get restaurant by ID
+    <li><a href="/rest/profile/restaurants/100004/withMeals" class="deal">Get restaurant by ID
         with menu(for example - 100005)</a></li>
     <br>
     <li><a href="" class="dealWithoutVisual">Vote by restaurantId</a></li>

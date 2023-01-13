@@ -5,12 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import org.voting.entity.Restaurant;
+import org.voting.service.MealService;
 import org.voting.service.RestaurantService;
+import org.voting.to.RestaurantTo;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping(value = RestaurantProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantProfileRestController {
@@ -20,22 +23,35 @@ public class RestaurantProfileRestController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private RestaurantService service;
+    private RestaurantService restaurantService;
 
-    @GetMapping
-    public List<Restaurant> getAll(@RequestParam(required = false) boolean withMenu) {
-        List<Restaurant> restaurants = service.getAll();
-        if (withMenu) {
-            return restaurants.stream()
-                    .map(r -> service.getWithMeals(r.getId()))
-                    .collect(Collectors.toList());
-        }
+    @Autowired
+    private MealService mealService;
+
+    @GetMapping()
+    public List<Restaurant> getAll() {
         log.info("getAll");
-        return restaurants;
+        return restaurantService.getAll();
+    }
+
+    @GetMapping("/withMeals")
+    public List<RestaurantTo> getAllWithMeals() {
+        log.info("getAllWithMeals");
+        List<RestaurantTo> restaurantsTo = new ArrayList<>();
+        for(Restaurant r : restaurantService.getAll()) {
+            restaurantsTo.add(new RestaurantTo(r, mealService.getMenuForDate(r.getId(), LocalDate.now())));
+        }
+        return restaurantsTo;
     }
 
     @GetMapping("/{id}")
-    public Restaurant get(@PathVariable int id, @RequestParam(required = false) boolean withMenu) {
-        return withMenu ? service.getWithMeals(id) : service.get(id);
+    public Restaurant get(@PathVariable int id) {
+        log.info("get restaurant with id {}", id);
+        return restaurantService.get(id);
+    }
+
+    @GetMapping("/{id}/withMeals")
+    public RestaurantTo getWithMeals(@PathVariable int id) {
+        return new RestaurantTo(restaurantService.get(id), mealService.getMenuForDate(id, LocalDate.now()));
     }
 }
