@@ -13,7 +13,7 @@ import static org.voting.entity.abstractEntity.AbstractBaseEntity.START_SEQ;
 public class VoteTestData {
 
     public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory
-            .usingIgnoringFieldsComparator(Vote.class, "votingTime", "restaurant.meals");
+            .usingIgnoringFieldsComparator(Vote.class, "votingTime", "password");
 
     public static final User TEMP_USER = new User(222222, "Temp User",
             "temp@gmail.com","password", Role.USER);
@@ -34,5 +34,5 @@ public class VoteTestData {
         return new Vote(null, central);
     }
 
-    public static final List<Vote> votesBonbonToday = List.of(voteAdminToday, voteJamesToday);
+    public static final List<Vote> votesBonbonToday = List.of(voteJamesToday, voteAdminToday);
 }

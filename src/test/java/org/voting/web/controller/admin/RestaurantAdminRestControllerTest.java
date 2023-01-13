@@ -39,7 +39,7 @@ public class RestaurantAdminRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newRestaurant.setId(newId);
         RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
-        RESTAURANT_MATCHER.assertMatch(service.getAll(), central, bonBon, atelierCrenn, newRestaurant);
+        RESTAURANT_MATCHER.assertMatch(service.getAll(), atelierCrenn, bonBon, central, newRestaurant);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class RestaurantAdminRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_MATCHER.contentJson(central, bonBon, atelierCrenn));
+                .andExpect(RESTAURANT_MATCHER.contentJson(atelierCrenn, bonBon, central));
     }
 
     @Test

@@ -12,7 +12,7 @@ import static org.voting.entity.abstractEntity.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
 
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class, "meals");
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingEqualsComparator(Restaurant.class);
     public static final int CENTRAL_ID = START_SEQ + 4;
     public static final int BONBON_ID = START_SEQ + 5;
     public static final int ATELIER_CRENN_ID = START_SEQ + 6;
