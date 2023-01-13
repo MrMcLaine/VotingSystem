@@ -29,7 +29,7 @@ public class Meal extends AbstractBaseEntity {
 
     @Column(name = "price", nullable = false)
     @NotNull
-    @Range(min = 2, max = 10)
+    @Range(min = 2, max = 1000)
     private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)

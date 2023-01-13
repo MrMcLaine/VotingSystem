@@ -11,10 +11,10 @@ import org.voting.service.VoteService;
 import org.voting.to.VoteTo;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.voting.SecurityUtil.authUserId;
+import static org.voting.util.VoteUtil.convertListToVoteTo;
 
 @RestController
 @RequestMapping(VoteRestController.REST_URL)
@@ -28,11 +28,12 @@ public class VoteRestController {
     private VoteService service;
 
     @PostMapping("/{restaurantId}")
-    public ResponseEntity<Vote> vote(@PathVariable int restaurantId) {
-        Vote created = service.save(restaurantId, authUserId());
+    public ResponseEntity<Vote> createWithLocations(@PathVariable int restaurantId) {
         log.info("save Vote with RestaurantId={}", restaurantId);
+        Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .buildAndExpand(REST_URL + "/{restaurantId}").toUri();
+                .path(REST_URL + "/{restaurantId}")
+                .buildAndExpand(authUserId(), created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
@@ -45,10 +46,6 @@ public class VoteRestController {
     @GetMapping("/{restaurantId}")
     public List<VoteTo> getVotesByRestaurant(@PathVariable int restaurantId) {
         List<Vote> votes= service.getVotesByRestaurant(restaurantId);
-        List<VoteTo> listToReturn = new ArrayList<>();
-        for(Vote vote : votes) {
-            listToReturn.add(new VoteTo(vote));
-        }
-        return listToReturn;
+        return convertListToVoteTo(votes);
     }
 }

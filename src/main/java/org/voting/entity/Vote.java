@@ -1,37 +1,32 @@
 package org.voting.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.voting.View;
 import org.voting.entity.abstractEntity.AbstractBaseEntity;
 import org.voting.entity.person.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-/*  ***Unable to create unique key constraint (user_id, voting_date_time) on table votes: database column 'voting_date_time' not found***
-@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(name="vote_idx",columnNames ={"user_id", "voting_date_time"})})
-*/
-@Table(name = "votes")
+@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "voting_date"}, name = "vote_idx")})
+/*@Table(name = "votes")*/
 public class Vote extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
-    @NotNull(groups = View.Persist.class)
+/*    @JsonBackReference
+    @NotNull(groups = View.Persist.class)*/
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
-    @NotNull(groups = View.Persist.class)
+/*    @JsonBackReference
+    @NotNull(groups = View.Persist.class)*/
     private Restaurant restaurant;
 
 /*    @Column(name="voting_date_time")

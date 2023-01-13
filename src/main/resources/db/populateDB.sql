@@ -37,7 +37,7 @@ VALUES (100004,'Marine Soil (-20 M)', 30, now()),
 
 INSERT INTO votes(user_id, voting_date, restaurant_id)
 VALUES (100000, now(), 100004),
-       (100001, now(), 100005),
+       (100001, '2022-12-31', 100005),
        (100002, now(), 100005),
        (100003, now(), 100006);
 
