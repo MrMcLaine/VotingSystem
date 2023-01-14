@@ -32,20 +32,20 @@ public class MealTestData {
     public static final Meal mealBonBon3 = new Meal(MEAL1_BONBON_ID + 2,
             "Salted Pollack from Yeu Island with pine salt and fermented cabbage", 34);
 
-    public static final Meal mealAtelierCrenn1 = new Meal(MEAL1_ATELIERCRENN_ID,
-            "Daisy Flower", 33);
-    public static final Meal mealAtelierCrenn2 = new Meal(MEAL1_ATELIERCRENN_ID + 1,
-            "Love to Eat Avocado Toast", 68);
-    public static final Meal mealAtelierCrenn3 = new Meal(MEAL1_ATELIERCRENN_ID + 2,
-            "Shining star", 49);
-    public static final Meal mealAtelierCrenn4 = new Meal(MEAL1_ATELIERCRENN_ID + 3,
-            "Some test meal in past", 1);
-    public static final Meal mealAtelierCrenn5 = new Meal(MEAL1_ATELIERCRENN_ID + 4,
-            "Second test meal in past", 1);
+    public static final MealTo mealAtelierCrenn1 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID,
+            "Daisy Flower", 33));
+    public static final MealTo mealAtelierCrenn2 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID + 1,
+            "Love to Eat Avocado Toast", 68));
+    public static final MealTo mealAtelierCrenn3 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID + 2,
+            "Shining star", 49));
+    public static final MealTo mealAtelierCrenn4 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID + 3,
+            "Some test meal in past", 1));
+    public static final MealTo mealAtelierCrenn5 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID + 4,
+            "Second test meal in past", 1));
 
     public static final List<MealTo> mealsToCentralForToday = List.of(mealCentral1, mealCentral2, mealCentral3);
 
-    public static final List<Meal> mealsAtelierCrennAllDates = List.of(mealAtelierCrenn1, mealAtelierCrenn2,
+    public static final List<MealTo> mealsAtelierCrennAllDates = List.of(mealAtelierCrenn1, mealAtelierCrenn2,
             mealAtelierCrenn3, mealAtelierCrenn4, mealAtelierCrenn5);
 
     public static Meal getNew() {

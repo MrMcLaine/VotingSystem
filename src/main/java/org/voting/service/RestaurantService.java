@@ -35,17 +35,8 @@ public class RestaurantService {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
-    public Restaurant getWithMeals(int id) {
-        Restaurant restaurant = repository.getWithMeals(id);
-        return restaurant != null ? restaurant : get(id);
-    }
-
     public List<Restaurant> getAll() {
         return repository.getAll();
     }
 
-    public Restaurant getWithHistoryOfMeals(int id) {
-        Restaurant restaurant = repository.getWithHistoryOfMeals(id);
-        return restaurant != null ? restaurant : get(id);
-    }
 }

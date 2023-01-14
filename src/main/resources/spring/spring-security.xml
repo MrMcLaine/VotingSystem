@@ -19,7 +19,7 @@
     <http>
 
         <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/rest/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/profile/**" access="isAuthenticated()"/>
 
         <form-login/>
         <logout/>

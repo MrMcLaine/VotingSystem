@@ -14,9 +14,4 @@ public interface RestaurantRepository {
 
     List<Restaurant> getAll();
 
-    Restaurant getWithMeals(int id);
-
-    Restaurant getWithHistoryOfMeals(int id);
-
-    Restaurant getWithDaysHistoryOfMeals(int id, LocalDate date);
 }

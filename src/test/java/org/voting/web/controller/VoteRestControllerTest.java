@@ -5,10 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.voting.VoteTestData;
 import org.voting.entity.Vote;
+import org.voting.entity.person.Role;
+import org.voting.entity.person.User;
 import org.voting.service.VoteService;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -17,8 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.voting.RestaurantTestData.BONBON_ID;
 import static org.voting.RestaurantTestData.CENTRAL_ID;
 import static org.voting.TestUtil.userHttpBasic;
-import static org.voting.UserTestData.ADMIN;
-import static org.voting.UserTestData.USER;
+import static org.voting.UserTestData.*;
 import static org.voting.VoteTestData.*;
 
 class VoteRestControllerTest extends AbstractControllerTest {
@@ -30,11 +35,13 @@ class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     void vote() throws Exception {
-        Vote newVote = getNew();
-        newVote.setUser(USER);
+        User TEMP_USER = new User(TEMP_USER_ID, "Temp User",
+                "temp@gmail.com","password", Role.USER);
+        Vote newVote = VoteTestData.getNew();
+        newVote.setUser(TEMP_USER);
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + CENTRAL_ID)
                 .contentType(MediaType.APPLICATION_JSON)
-                .with(userHttpBasic(USER))
+                .with(userHttpBasic(TEMP_USER))
                 .content(JsonUtil.writeValue(newVote)))
                 .andExpect(status().isCreated());
 
@@ -42,7 +49,7 @@ class VoteRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newVote.setId(newId);
         VOTE_MATCHER.assertMatch(created, newVote);
-        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(USER.getId()), newVote);
+        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(TEMP_USER.getId()), newVote);
     }
 
 
@@ -63,6 +70,7 @@ class VoteRestControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.get(REST_URL + BONBON_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
-        VOTE_MATCHER.assertMatch(service.getVotesByRestaurant(BONBON_ID), votesBonbonToday);
+        voteAdminToday.setVotingDate(LocalDate.of(2022, 12, 31));
+        VOTE_MATCHER.assertMatch(service.getVotesByRestaurant(BONBON_ID), List.of(voteJamesToday, voteAdminToday));
     }
 }

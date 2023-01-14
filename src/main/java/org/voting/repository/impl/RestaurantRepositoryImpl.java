@@ -37,19 +37,4 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     public List<Restaurant> getAll() {
         return repository.findAll(SORT_NAME);
     }
-
-    @Override
-    public Restaurant getWithMeals(int id) {
-        return repository.get(id);
-    }
-
-    @Override
-    public Restaurant getWithHistoryOfMeals(int id) {
-        return repository.getWithHistoryOfMeals(id);
-    }
-
-    @Override
-    public Restaurant getWithDaysHistoryOfMeals(int id, LocalDate date) {
-        return repository.get(id, date);
-    }
 }

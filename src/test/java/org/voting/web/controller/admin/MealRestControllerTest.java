@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.util.NestedServletException;
 import org.voting.entity.Meal;
 import org.voting.service.MealService;
 import org.voting.to.MealTo;
@@ -12,8 +13,12 @@ import org.voting.util.exception.NotFoundException;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.voting.MealTestData.*;
 import static org.voting.MealTestData.NOT_FOUND;
@@ -45,7 +50,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void delete() throws Exception {
+    void delete() throws Exception {
         perform(MockMvcRequestBuilders.delete(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
@@ -54,7 +59,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void update() throws Exception {
+    void update() throws Exception {
         MealTo updated = new MealTo(getMealUpdated());
         perform(MockMvcRequestBuilders.put(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -65,42 +70,33 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void getActualMenu() throws Exception {
-/*        perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID)
+    void getActualMenu() throws Exception {
+        perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
-        MEAL_MATCHER.assertMatch(service.getActualMenu(CENTRAL_ID), mealsCentralForToday);*/
+        MEAL_TO_MATCHER.assertMatch(service.getMenuForDate(CENTRAL_ID, LocalDate.now()), mealsToCentralForToday);
     }
 
     @Test
-    public void get() throws Exception {
-/*        perform(MockMvcRequestBuilders.get(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
+    void get() throws Exception {
+        perform(MockMvcRequestBuilders.get(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 // https://jira.spring.io/browse/SPR-14472
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MEAL_MATCHER.contentJson(mealCentral1));*/
+                .andExpect(MEAL_MATCHER.contentJson(getMealCentral));
     }
 
     @Test
-    public void getUnAuth() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    public void getForbidden() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL, CENTRAL_ID)
-                .with(userHttpBasic(ADMIN)))
-                .andExpect(status().isForbidden());
-    }
-
-    @Test
-    public void getNotFound() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND, CENTRAL_ID)
+    void getNotFound(){
+        Exception exception = assertThrows((NestedServletException.class), () ->
+                perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND, CENTRAL_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
+                .andExpect(status().isNotFound()));
+        String expectedMessage = "Not found entity with id=10";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

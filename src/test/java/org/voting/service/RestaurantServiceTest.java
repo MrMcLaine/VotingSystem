@@ -58,20 +58,9 @@ class RestaurantServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    void getWithMeals() {
-        Restaurant centralTest = service.getWithMeals(CENTRAL_ID);
-        RESTAURANT_MATCHER.assertMatch(centralTest, central);
-    }
-
-    @Test
     void getAll() {
         List<Restaurant> all = service.getAll();
         RESTAURANT_MATCHER.assertMatch(all, atelierCrenn, bonBon, central);
     }
 
-    @Test
-    void getWithHistoryOfMeals() {
-        Restaurant atelierCrennTest = service.getWithHistoryOfMeals(ATELIER_CRENN_ID);
-        RESTAURANT_MATCHER.assertMatch(atelierCrennTest, atelierCrenn);
-    }
 }
