@@ -34,6 +34,12 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
+    public Vote update(Vote vote, int restaurantId) {
+        vote.setRestaurant(restaurantRepository.get(restaurantId));
+        return voteRepository.save(vote);
+    }
+
+    @Override
     public Vote getVoteByUser(int userId, LocalDate date) {
         return voteRepository.getVoteByUser(userId, date);
     }

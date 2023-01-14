@@ -10,8 +10,9 @@ import org.voting.repository.VoteRepository;
 import org.voting.util.exception.VotingTimeException;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
+
+import static org.voting.util.VotesUtil.isLegal;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -33,16 +34,16 @@ public class VoteService {
     }
 
     public Vote save(int restaurantId, int userId) {
-        if (isLegal(userId)) {
+        Vote vote = voteRepository.getVoteByUser(userId, LocalDate.now());
+        if (vote == null) {
             return voteRepository.save(userId, restaurantId);
         } else {
-            throw new VotingTimeException("Sorry, but voting time is over.");
+            if (isLegal(vote)) {
+                return voteRepository.update(vote, restaurantId);
+            } else {
+                throw new VotingTimeException("Sorry, but voting time is over.");
+            }
         }
-    }
-
-    private boolean isLegal(int userId) {
-        Vote getVote = getTodayVoteByUser(userId);
-        return getVote == null || getVote.getVotingTime().isBefore(LocalTime.of(11, 0));
     }
 
     public List<Vote> getVotesByRestaurant(int restaurantId) {

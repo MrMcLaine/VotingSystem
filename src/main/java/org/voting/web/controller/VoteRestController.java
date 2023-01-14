@@ -29,7 +29,17 @@ public class VoteRestController {
 
     @PostMapping("/{restaurantId}")
     public ResponseEntity<Vote> createWithLocations(@PathVariable int restaurantId) {
-        log.info("save Vote with RestaurantId={}", restaurantId);
+        log.info("crate Vote with RestaurantId={}", restaurantId);
+        Vote created = service.save(restaurantId, authUserId());
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{restaurantId}")
+                .buildAndExpand(authUserId(), created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
+    @PutMapping("/{restaurantId}")
+    public ResponseEntity<Vote> updateWithLocations(@PathVariable int restaurantId) {
+        log.info("update Vote with RestaurantId={}", restaurantId);
         Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{restaurantId}")
