@@ -61,7 +61,8 @@
     <li><a href="/rest/profile/restaurants/100004/withMeals" class="deal">Get restaurant by ID
         with menu(for example - 100005)</a></li>
     <br>
-    <li><a href="" class="dealWithoutVisual">Vote by restaurantId</a></li>
+    <li><a href="" class="dealWithoutVisual">Vote to restaurantId</a></li>
+    <li><a href="" class="dealWithoutVisual">Change vote to restaurantId</a></li>
     <li><a href="/rest/profile/votes/today" class="deal">Today user's vote</a></li>
     <li><a href="/rest/profile/votes/100005" class="deal">All today votes by restaurant(for example - restaurant with
         ID=100005)</a></li>

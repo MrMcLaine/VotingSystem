@@ -1,8 +1,6 @@
 package org.voting;
 
 import org.voting.entity.Vote;
-import org.voting.entity.person.Role;
-import org.voting.entity.person.User;
 
 import java.util.List;
 
@@ -15,14 +13,11 @@ public class VoteTestData {
     public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory
             .usingIgnoringFieldsComparator(Vote.class, "votingTime", "password");
 
-    public static final User TEMP_USER = new User(222222, "Temp User",
-            "temp@gmail.com","password", Role.USER);
-
     public static final int VOTE_USER_ID = START_SEQ + 18;
     public static final int VOTE_ADMIN_ID = START_SEQ + 19;
     public static final int VOTE_JAMES_ID = START_SEQ + 20;
     public static final int VOTE_DAVID_ID = START_SEQ + 21;
-    public static final int VOTE_TEMP_USER_ID = START_SEQ + 22;
+    public static final int VOTE_TEMP_USER_ID = START_SEQ + 23;
 
     public static Vote voteUserToday = new Vote(VOTE_USER_ID, central, USER);
     public static Vote voteAdminToday = new Vote(VOTE_ADMIN_ID, bonBon, ADMIN);

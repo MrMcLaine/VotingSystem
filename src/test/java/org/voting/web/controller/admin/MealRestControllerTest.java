@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.voting.entity.Meal;
 import org.voting.service.MealService;
+import org.voting.to.MealTo;
 import org.voting.util.exception.NotFoundException;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
@@ -41,7 +42,6 @@ public class MealRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newMeal.setId(newId);
         MEAL_MATCHER.assertMatch(created, newMeal);
-/*        MEAL_MATCHER.assertMatch(service.getActualMenu(CENTRAL_ID), created, mealCentral1, mealCentral2, mealCentral3);*/
     }
 
     @Test
@@ -55,13 +55,13 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void update() throws Exception {
- /*       Meal updated = getUpdated();
+        MealTo updated = new MealTo(getMealUpdated());
         perform(MockMvcRequestBuilders.put(REST_URL + MEAL1_CENTRAL_ID, CENTRAL_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN))
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isNoContent());
-        MEAL_MATCHER.assertMatch(service.get(MEAL1_CENTRAL_ID, CENTRAL_ID), updated);*/
+        MEAL_TO_MATCHER.assertMatch(service.get(MEAL1_CENTRAL_ID, CENTRAL_ID), updated);
     }
 
     @Test

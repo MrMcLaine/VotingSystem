@@ -17,13 +17,15 @@ public class UserTestData {
     public static final int ADMIN_ID = START_SEQ + 1;
     public static final int JAMES_ID = START_SEQ + 2;
     public static final int DAVID_ID = START_SEQ + 3;
+    public static final int TEMP_USER_ID = START_SEQ + 22;
     public static final int NOT_FOUND = 10;
 
     public static final User USER = new User(USER_ID, "User", "user@gmail.com", "password", Role.USER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN);
     public static final User JAMES = new User(JAMES_ID, "James", "james21@gmail.com", "james", Role.USER);
     public static final User DAVID = new User(DAVID_ID, "David", "david_D@gmail.com", "david", Role.USER);
-
+    public static final User TEMP_USER = new User(TEMP_USER_ID, "Temp User",
+            "temp@gmail.com","password", Role.USER);
     public static final List<User> users = List.of(DAVID, JAMES, ADMIN, USER);
 
     public static User getNew() {
