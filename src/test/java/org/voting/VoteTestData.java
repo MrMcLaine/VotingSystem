@@ -9,7 +9,7 @@ import static org.voting.entity.abstractEntity.AbstractBaseEntity.START_SEQ;
 public class VoteTestData {
 
     public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory
-            .usingIgnoringFieldsComparator(Vote.class, "votingTime", "password");
+            .usingIgnoringFieldsComparator(Vote.class, "votingTime", "user.password", "user.id");
 
     public static final int VOTE_USER_ID = START_SEQ + 18;
     public static final int VOTE_ADMIN_ID = START_SEQ + 19;

@@ -236,24 +236,6 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- Webjars (static dependencies distributed as JAR files) -->
-    <!--    <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>${webjars-jquery.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>datatables</artifactId>
-            <version>${webjars-datatables.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.webjars</groupId>
-                    <artifactId>jquery</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
-
         <!--JSON-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -284,18 +266,6 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hamcrest-core</artifactId>
-                    <groupId>org.hamcrest</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>

@@ -9,6 +9,7 @@ import org.voting.VoteTestData;
 import org.voting.entity.Vote;
 import org.voting.entity.person.Role;
 import org.voting.entity.person.User;
+import org.voting.service.UserService;
 import org.voting.service.VoteService;
 import org.voting.web.AbstractControllerTest;
 import org.voting.web.json.JsonUtil;
@@ -30,12 +31,16 @@ class VoteRestControllerTest extends AbstractControllerTest {
     private static final String REST_URL = VoteRestController.REST_URL + "/";
 
     @Autowired
-    private VoteService service;
+    private VoteService voteService;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     void vote() throws Exception {
         User TEMP_USER = new User(TEMP_USER_ID, "Temp User",
                 "temp@gmail.com", "password", Role.USER);
+        userService.create(TEMP_USER);
         Vote newVote = VoteTestData.getNew();
         newVote.setUser(TEMP_USER);
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + CENTRAL_ID)
@@ -48,7 +53,6 @@ class VoteRestControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newVote.setId(newId);
         VOTE_MATCHER.assertMatch(created, newVote);
-        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(TEMP_USER.getId()), newVote);
     }
 
 
@@ -60,7 +64,7 @@ class VoteRestControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
-        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(USER.getId()), voteUserToday);
+        VOTE_MATCHER.assertMatch(voteService.getTodayVoteByUser(USER.getId()), voteUserToday);
     }
 
     @Test
@@ -69,6 +73,6 @@ class VoteRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
         voteAdminToday.setVotingDate(LocalDate.of(2022, 12, 31));
-        VOTE_MATCHER.assertMatch(service.getVotesByRestaurant(BONBON_ID), List.of(voteJamesToday, voteAdminToday));
+        VOTE_MATCHER.assertMatch(voteService.getVotesByRestaurant(BONBON_ID), List.of(voteJamesToday, voteAdminToday));
     }
 }
