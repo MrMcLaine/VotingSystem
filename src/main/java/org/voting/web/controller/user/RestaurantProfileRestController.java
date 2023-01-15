@@ -14,6 +14,7 @@ import org.voting.to.RestaurantTo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @RestController
 @RequestMapping(value = RestaurantProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantProfileRestController {
@@ -38,7 +39,7 @@ public class RestaurantProfileRestController {
     public List<RestaurantTo> getAllWithMeals() {
         log.info("getAllWithMeals");
         List<RestaurantTo> restaurantsTo = new ArrayList<>();
-        for(Restaurant r : restaurantService.getAll()) {
+        for (Restaurant r : restaurantService.getAll()) {
             restaurantsTo.add(new RestaurantTo(r, mealService.getMenuForDate(r.getId(), LocalDate.now())));
         }
         return restaurantsTo;

@@ -71,13 +71,4 @@ public class RestaurantAdminRestControllerTest extends AbstractControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(RESTAURANT_MATCHER.contentJson(atelierCrenn, bonBon, central));
     }
-/*
-    @Test
-    public void getWithHistoryOfMeals() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL_HISTORY, ATELIER_CRENN_ID)
-                .with(userHttpBasic(ADMIN)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_TO_MATCHER.contentJson(atelierCrennWithMeals));
-    }*/
 }

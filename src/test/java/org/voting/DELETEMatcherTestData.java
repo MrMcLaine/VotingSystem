@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MatcherTestData {
+public class DELETEMatcherTestData {
 
     public static <T> void assertMatch(T actual, T expected) {
         assertThat(actual).isEqualTo(expected);
@@ -23,13 +23,4 @@ public class MatcherTestData {
     public static <T> void assertMatch(Iterable<T> actual, Iterable<T> expected) {
         assertThat(actual).isEqualTo(expected);
     }
-
-//    @SafeVarargs
-//    public static <T> ResultMatcher contentJson(T... expected) {
-//        return result -> assertMatch(readListFromJsonMvcResult(result, expected[0].getClass()), Arrays.asList(expected));
-//    }
-//
-//    public static <T> ResultMatcher contentJson(T expected) {
-//        return result -> assertMatch(readFromJsonMvcResult(result, expected.getClass()), expected);
-//    }
 }

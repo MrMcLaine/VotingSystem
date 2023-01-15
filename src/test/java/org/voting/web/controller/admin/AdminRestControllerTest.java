@@ -40,9 +40,9 @@ class AdminRestControllerTest extends AbstractControllerTest {
     void getNotFound() {
         Exception exception = assertThrows((NestedServletException.class), () ->
                 perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND)
-                .with(userHttpBasic(ADMIN)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity()));
+                        .with(userHttpBasic(ADMIN)))
+                        .andDo(print())
+                        .andExpect(status().isUnprocessableEntity()));
         String expectedMessage = "Not found entity with id=10";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
@@ -70,9 +70,9 @@ class AdminRestControllerTest extends AbstractControllerTest {
     void deleteNotFound() {
         Exception exception = assertThrows((NestedServletException.class), () ->
                 perform(MockMvcRequestBuilders.delete(REST_URL + NOT_FOUND)
-                .with(userHttpBasic(ADMIN)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity()));
+                        .with(userHttpBasic(ADMIN)))
+                        .andDo(print())
+                        .andExpect(status().isUnprocessableEntity()));
         String expectedMessage = "Not found entity with id=10";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));

@@ -44,10 +44,6 @@ public class MealRepositoryImpl implements MealRepository {
         return crudMealRepository.delete(id, restaurantId) != 0;
     }
 
-    @Override
-    public List<Meal> getActualMenu(int restaurantId) {
-        return null;
-    }
 
     @Override
     public List<Meal> getMenuForDate(int restaurantId, LocalDate date) {

@@ -12,25 +12,17 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "voting_date"}, name = "vote_idx")})
-/*@Table(name = "votes")*/
 public class Vote extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-/*    @JsonBackReference
-    @NotNull(groups = View.Persist.class)*/
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-/*    @JsonBackReference
-    @NotNull(groups = View.Persist.class)*/
     private Restaurant restaurant;
-
-/*    @Column(name="voting_date_time")
-    private LocalDateTime votingDateTime = LocalDateTime.now();*/
 
     @Column(name = "voting_date", columnDefinition = "date default now()")
     private LocalDate votingDate = LocalDate.now();
@@ -57,14 +49,14 @@ public class Vote extends AbstractBaseEntity {
     }
 
     public Vote(Restaurant restaurant, LocalDateTime dateTimeVote) {
-        this(null,restaurant,dateTimeVote);
+        this(null, restaurant, dateTimeVote);
     }
 
-    public Vote(Integer id,Restaurant restaurant,LocalDateTime dateTimeVote){
+    public Vote(Integer id, Restaurant restaurant, LocalDateTime dateTimeVote) {
         super(id);
-        this.votingDate= dateTimeVote.toLocalDate();
-        this.votingTime=dateTimeVote.toLocalTime();
-        this.restaurant=restaurant;
+        this.votingDate = dateTimeVote.toLocalDate();
+        this.votingTime = dateTimeVote.toLocalTime();
+        this.restaurant = restaurant;
     }
 
     public User getUser() {

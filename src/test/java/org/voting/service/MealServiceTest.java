@@ -56,7 +56,8 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void updateNotOwn() {
-        NotFoundException exception = assertThrows(NotFoundException.class, () -> service.update(getMealUpdated(), BONBON_ID));
+        NotFoundException exception = assertThrows(NotFoundException.class, () ->
+                service.update(getMealUpdated(), BONBON_ID));
         Assertions.assertEquals("Not found entity with id=" + BONBON_ID, exception.getMessage());
     }
 
@@ -78,13 +79,15 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void getActualMenu() {
-        List<MealTo> actualMenu=service.getMenuForDate(CENTRAL_ID, LocalDate.now());
-        Assertions.assertEquals(actualMenu,mealsToCentralForToday);
+        List<MealTo> actualMenu = service.getMenuForDate(CENTRAL_ID, LocalDate.now());
+        Assertions.assertEquals(actualMenu, mealsToCentralForToday);
     }
 
     @Test
-    void createWithException() throws Exception {
-        validateRootCause(ConstraintViolationException.class, () -> service.create(new Meal(null, "", 33), CENTRAL_ID));
-        validateRootCause(ConstraintViolationException.class, () -> service.create(new Meal(null, "Test meal  ", 0 ), CENTRAL_ID));
+    void createWithException() {
+        validateRootCause(ConstraintViolationException.class, () ->
+                service.create(new Meal(null, "", 33), CENTRAL_ID));
+        validateRootCause(ConstraintViolationException.class, () ->
+                service.create(new Meal(null, "Test meal  ", 0), CENTRAL_ID));
     }
 }

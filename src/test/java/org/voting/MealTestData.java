@@ -13,7 +13,6 @@ public class MealTestData {
 
     public static final int NOT_FOUND = 10;
     public static final int MEAL1_CENTRAL_ID = START_SEQ + 7;
-    public static final int MEAL1_BONBON_ID = START_SEQ + 10;
     public static final int MEAL1_ATELIERCRENN_ID = START_SEQ + 13;
 
     public static final Meal getMealCentral = new Meal(MEAL1_CENTRAL_ID,
@@ -24,14 +23,6 @@ public class MealTestData {
             "Low Andes Mountain (1800 M)", 44));
     public static final MealTo mealCentral3 = new MealTo(new Meal(MEAL1_CENTRAL_ID + 2,
             "Extreme Stem (2875 M)", 26));
-
-    public static final Meal mealBonBon1 = new Meal(MEAL1_BONBON_ID,
-            "gazpacho with \"snow\"", 28);
-    public static final Meal mealBonBon2 = new Meal(MEAL1_BONBON_ID + 1,
-            "Jewels of ‘White Pearl’ oysters with Corsican mint and Vodka-tonic gels", 77);
-    public static final Meal mealBonBon3 = new Meal(MEAL1_BONBON_ID + 2,
-            "Salted Pollack from Yeu Island with pine salt and fermented cabbage", 34);
-
     public static final MealTo mealAtelierCrenn1 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID,
             "Daisy Flower", 33));
     public static final MealTo mealAtelierCrenn2 = new MealTo(new Meal(MEAL1_ATELIERCRENN_ID + 1,

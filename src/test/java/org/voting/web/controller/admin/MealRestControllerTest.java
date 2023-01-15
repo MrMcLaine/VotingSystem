@@ -89,12 +89,12 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void getNotFound(){
+    void getNotFound() {
         Exception exception = assertThrows((NestedServletException.class), () ->
                 perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND, CENTRAL_ID)
-                .with(userHttpBasic(ADMIN)))
-                .andDo(print())
-                .andExpect(status().isNotFound()));
+                        .with(userHttpBasic(ADMIN)))
+                        .andDo(print())
+                        .andExpect(status().isNotFound()));
         String expectedMessage = "Not found entity with id=10";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));

@@ -7,7 +7,6 @@ import org.voting.entity.Restaurant;
 import org.voting.repository.CrudRestaurantRepository;
 import org.voting.repository.RestaurantRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository

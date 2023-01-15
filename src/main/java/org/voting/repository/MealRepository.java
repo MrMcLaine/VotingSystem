@@ -12,8 +12,6 @@ public interface MealRepository {
 
     boolean delete(int id, int restaurantId);
 
-    List<Meal> getActualMenu(int restaurantId);
-
     List<Meal> getMenuForDate(int restaurantId, LocalDate date);
 
     List<Meal> getHistoryOfMenu(int restaurantId);

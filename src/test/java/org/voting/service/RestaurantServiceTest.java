@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.voting.RestaurantTestData.*;
 
 
-class RestaurantServiceTest extends AbstractServiceTest{
+class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     RestaurantService service;
@@ -25,12 +25,12 @@ class RestaurantServiceTest extends AbstractServiceTest{
 
     @Test
     void create() {
-            Restaurant created = service.create(getNew());
-            int newId = created.id();
-            Restaurant newRestaurant = getNew();
-            newRestaurant.setId(newId);
-            RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
-            RESTAURANT_MATCHER.assertMatch(service.get(newId), newRestaurant);
+        Restaurant created = service.create(getNew());
+        int newId = created.id();
+        Restaurant newRestaurant = getNew();
+        newRestaurant.setId(newId);
+        RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
+        RESTAURANT_MATCHER.assertMatch(service.get(newId), newRestaurant);
     }
 
     @Test

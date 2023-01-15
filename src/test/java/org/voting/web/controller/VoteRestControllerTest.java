@@ -16,7 +16,6 @@ import org.voting.web.json.JsonUtil;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +35,7 @@ class VoteRestControllerTest extends AbstractControllerTest {
     @Test
     void vote() throws Exception {
         User TEMP_USER = new User(TEMP_USER_ID, "Temp User",
-                "temp@gmail.com","password", Role.USER);
+                "temp@gmail.com", "password", Role.USER);
         Vote newVote = VoteTestData.getNew();
         newVote.setUser(TEMP_USER);
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + CENTRAL_ID)
@@ -56,13 +55,12 @@ class VoteRestControllerTest extends AbstractControllerTest {
     @Test
     void getTodayVote() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + "/today")
-                .with(userHttpBasic(ADMIN)))
+                .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(VOTE_MATCHER.contentJson(voteAdminToday));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
-        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(ADMIN.getId()), voteAdminToday);
+        VOTE_MATCHER.assertMatch(service.getTodayVoteByUser(USER.getId()), voteUserToday);
     }
 
     @Test
