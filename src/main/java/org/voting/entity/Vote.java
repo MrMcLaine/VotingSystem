@@ -1,5 +1,7 @@
 package org.voting.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.voting.entity.abstractEntity.AbstractBaseEntity;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "voting_date"}, name = "vote_idx")})
 public class Vote extends AbstractBaseEntity {
@@ -57,38 +61,6 @@ public class Vote extends AbstractBaseEntity {
         this.votingDate = dateTimeVote.toLocalDate();
         this.votingTime = dateTimeVote.toLocalTime();
         this.restaurant = restaurant;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public LocalDate getVotingDate() {
-        return votingDate;
-    }
-
-    public void setVotingDate(LocalDate votingDate) {
-        this.votingDate = votingDate;
-    }
-
-    public LocalTime getVotingTime() {
-        return votingTime;
-    }
-
-    public void setVotingTime(LocalTime votingTime) {
-        this.votingTime = votingTime;
     }
 
     @Override

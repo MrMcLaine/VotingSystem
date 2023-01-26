@@ -1,10 +1,17 @@
 package org.voting.entity.abstractEntity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Getter
+@Setter
+@ToString
 @MappedSuperclass
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
@@ -19,21 +26,5 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     public AbstractNamedEntity(Integer id, String name) {
         super(id);
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractNamedEntity{" +
-               "name='" + name + '\'' +
-               ", id=" + id +
-               '}';
     }
 }

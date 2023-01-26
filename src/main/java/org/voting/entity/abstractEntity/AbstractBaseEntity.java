@@ -1,10 +1,16 @@
 package org.voting.entity.abstractEntity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.voting.HasId;
 
 import javax.persistence.*;
 import java.util.Objects;
 
+@Getter
+@Setter
+@ToString
 @MappedSuperclass
 @Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity implements HasId {
@@ -22,23 +28,8 @@ public abstract class AbstractBaseEntity implements HasId {
         this.id = id;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public boolean isNew() {
         return this.id == null;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractBaseEntity{" +
-               "id=" + id +
-               '}';
     }
 
     @Override

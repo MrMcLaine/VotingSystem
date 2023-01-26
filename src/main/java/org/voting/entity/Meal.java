@@ -1,5 +1,7 @@
 package org.voting.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
@@ -13,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "meals")
 public class Meal extends AbstractBaseEntity {
@@ -65,38 +69,6 @@ public class Meal extends AbstractBaseEntity {
         super(id);
         this.description = description;
         this.price = price;
-    }
-
-    public LocalDate getDateMeal() {
-        return dateMeal;
-    }
-
-    public void setDateMeal(LocalDate dateMeal) {
-        this.dateMeal = dateMeal;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
     }
 
     @Override

@@ -1,9 +1,11 @@
 package org.voting.entity;
 
+import lombok.ToString;
 import org.voting.entity.abstractEntity.AbstractNamedEntity;
 
 import javax.persistence.*;
 
+@ToString
 @Entity
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(name = "restaurant_unique_name_idx", columnNames = "name")})
 public class Restaurant extends AbstractNamedEntity {
@@ -23,11 +25,4 @@ public class Restaurant extends AbstractNamedEntity {
         super(id, name);
     }
 
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-               ", name='" + name + '\'' +
-               ", id=" + id +
-               '}';
-    }
 }
