@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.voting.SecurityUtil.authUserId;
 import static org.voting.util.VotesUtil.convertListToVoteTo;
+import static org.voting.util.VotesUtil.convertToVoteTo;
 
 @RestController
 @RequestMapping(VoteRestController.REST_URL)
@@ -50,7 +51,7 @@ public class VoteRestController {
     @GetMapping("/today")
     public VoteTo getTodayVote() {
         Vote myVote = service.getTodayVoteByUser(authUserId());
-        return myVote != null ? new VoteTo(myVote) : null;
+        return myVote != null ? convertToVoteTo(myVote) : null;
     }
 
     @GetMapping("/{restaurantId}")

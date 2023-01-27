@@ -1,11 +1,8 @@
 package org.voting.to;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.lang.Nullable;
-import org.voting.entity.Vote;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class VoteTo {
 
@@ -16,13 +13,13 @@ public class VoteTo {
 
     private final LocalDate date;
 
-    private String restaurantName;
+    private final String restaurantName;
 
-    public VoteTo(@Nullable Vote vote) {
-        this.id = Objects.requireNonNull(vote).getId();
-        this.email = vote.getUser().getEmail();
-        this.date = vote.getVotingDate();
-        this.restaurantName = vote.getRestaurant().getName();
+    public VoteTo(Integer id, String email, LocalDate date, String restaurantName) {
+        this.id = id;
+        this.email = email;
+        this.date = date;
+        this.restaurantName = restaurantName;
     }
 
     @Override

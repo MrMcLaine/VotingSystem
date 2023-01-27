@@ -15,6 +15,7 @@ import static org.voting.RestaurantTestData.CENTRAL_ID;
 import static org.voting.UserTestData.*;
 import static org.voting.VoteTestData.*;
 import static org.voting.util.VotesUtil.convertListToVoteTo;
+import static org.voting.util.VotesUtil.convertToVoteTo;
 
 class VoteServiceTest extends AbstractServiceTest {
 
@@ -26,9 +27,9 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void getTodayVoteByUser() {
-        VoteTo voteToTest = new VoteTo(service.getTodayVoteByUser(USER_ID));
+        VoteTo voteToTest = convertToVoteTo(service.getTodayVoteByUser(USER_ID));
         voteUserToday.setUser(USER);
-        VoteTo voteToData = new VoteTo(voteUserToday);
+        VoteTo voteToData = convertToVoteTo(voteUserToday);
         Assertions.assertEquals(voteToTest, voteToData);
     }
 

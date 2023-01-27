@@ -4,8 +4,9 @@ import org.voting.entity.Vote;
 import org.voting.to.VoteTo;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class VotesUtil {
 
@@ -16,10 +17,13 @@ public class VotesUtil {
     }
 
     public static List<VoteTo> convertListToVoteTo(List<Vote> votes) {
-        List<VoteTo> resultList = new ArrayList<>();
-        for (Vote vote : votes) {
-            resultList.add(new VoteTo(vote));
-        }
-        return resultList;
+        return votes.stream()
+                .map(VotesUtil::convertToVoteTo)
+                .collect(Collectors.toList());
+    }
+
+    public static VoteTo convertToVoteTo(Vote vote) {
+        return new VoteTo(Objects.requireNonNull(vote).getId(), vote.getUser().getEmail(),
+                vote.getVotingDate(), vote.getRestaurant().getName());
     }
 }
