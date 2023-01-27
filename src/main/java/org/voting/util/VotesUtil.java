@@ -9,8 +9,10 @@ import java.util.List;
 
 public class VotesUtil {
 
+    public static final LocalTime END_OF_VOTING = LocalTime.of(11, 0);
+
     public static boolean isLegal(Vote vote) {
-        return vote.getVotingTime().isBefore(LocalTime.of(11, 0));
+        return vote.getVotingTime().isBefore(END_OF_VOTING);
     }
 
     public static List<VoteTo> convertListToVoteTo(List<Vote> votes) {

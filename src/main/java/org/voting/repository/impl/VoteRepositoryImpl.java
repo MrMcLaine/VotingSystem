@@ -22,7 +22,7 @@ public class VoteRepositoryImpl implements VoteRepository {
     private CrudUserRepository userRepository;
 
     @Autowired
-    CrudRestaurantRepository restaurantRepository;
+    private CrudRestaurantRepository restaurantRepository;
 
     @Override
     @Transactional

@@ -15,7 +15,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     private static final Sort SORT_NAME = Sort.by(Sort.Direction.ASC, "name");
 
     @Autowired
-    CrudRestaurantRepository repository;
+    private CrudRestaurantRepository repository;
 
     @Override
     public Restaurant get(int id) {

@@ -16,9 +16,9 @@ import java.util.List;
 @Repository
 public class MealRepositoryImpl implements MealRepository {
     @Autowired
-    CrudMealRepository crudMealRepository;
+    private CrudMealRepository crudMealRepository;
     @Autowired
-    CrudRestaurantRepository crudRestaurantRepository;
+    private CrudRestaurantRepository crudRestaurantRepository;
 
     @Override
     public Meal get(int id, int restaurantId) {
