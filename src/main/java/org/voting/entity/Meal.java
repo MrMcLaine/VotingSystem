@@ -18,10 +18,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "meals")
+@Table(name = "menu_item")
 public class Meal extends AbstractBaseEntity {
 
-    @Column(name = "date_meal", nullable = false)
+    @Column(name = "date_menu_item", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
     private LocalDate dateMeal = LocalDate.now();

@@ -1,8 +1,8 @@
-DELETE FROM votes;
+DELETE FROM vote;
 DELETE FROM user_roles;
 DELETE FROM users;
-DELETE FROM meals;
-DELETE FROM restaurants;
+DELETE FROM menu_item;
+DELETE FROM restaurant;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users (name, email, password)
@@ -17,12 +17,12 @@ VALUES ('USER', 100000),
        ('USER', 100002),
        ('USER', 100003);
 
-INSERT INTO restaurants (name)
+INSERT INTO restaurant (name)
 VALUES ('Central, Lima'),
        ('Bon-Bon, Brussels'),
        ('Atelier Crenn, San Francisco');
 
-INSERT INTO meals (restaurant_id, description, price, date_meal)
+INSERT INTO menu_item (restaurant_id, description, price, date_menu_item)
 VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100004,'Low Andes Mountain (1800 M)', 44, now()),
        (100004,'Extreme Stem (2875 M)', 26, now()),
@@ -35,7 +35,7 @@ VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100006, 'Some test meal in past', 1, '2022-12-31'),
        (100006, 'Second test meal in past', 1, '2022-12-30');
 
-INSERT INTO votes(user_id, voting_date, restaurant_id)
+INSERT INTO vote(user_id, voting_date, restaurant_id)
 VALUES (100000, now(), 100004),
        (100001, '2022-12-31', 100005),
        (100002, now(), 100005),

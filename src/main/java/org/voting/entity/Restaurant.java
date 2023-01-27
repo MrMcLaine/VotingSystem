@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @ToString
 @Entity
-@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(name = "restaurant_unique_name_idx", columnNames = "name")})
+@Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(name = "restaurant_unique_name_idx", columnNames = "name")})
 public class Restaurant extends AbstractNamedEntity {
 
     public Restaurant() {
