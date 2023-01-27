@@ -19,12 +19,12 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "menu_item")
-public class Meal extends AbstractBaseEntity {
+public class MenuItem extends AbstractBaseEntity {
 
     @Column(name = "date_menu_item", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
-    private LocalDate dateMeal = LocalDate.now();
+    private LocalDate dateMenuItem = LocalDate.now();
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -40,31 +40,31 @@ public class Meal extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
-    public Meal() {
+    public MenuItem() {
     }
 
-    public Meal(String description, int price, Restaurant restaurant) {
+    public MenuItem(String description, int price, Restaurant restaurant) {
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
     }
 
-    public Meal(Integer id, LocalDate date, String description, int price, Restaurant restaurant) {
+    public MenuItem(Integer id, LocalDate date, String description, int price, Restaurant restaurant) {
         super(id);
-        this.dateMeal = date;
+        this.dateMenuItem = date;
         this.description = description;
         this.price = price;
         this.restaurant = restaurant;
     }
 
-    public Meal(Integer id, LocalDate date, String description, int price) {
+    public MenuItem(Integer id, LocalDate date, String description, int price) {
         super(id);
-        this.dateMeal = date;
+        this.dateMenuItem = date;
         this.description = description;
         this.price = price;
     }
 
-    public Meal(Integer id, String description, Integer price) {
+    public MenuItem(Integer id, String description, Integer price) {
         super(id);
         this.description = description;
         this.price = price;
@@ -72,8 +72,8 @@ public class Meal extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return "Meal{" +
-               "dateMeal=" + dateMeal +
+        return "MenuItem{" +
+               "dateMenuItem=" + dateMenuItem +
                ", description='" + description + '\'' +
                ", price=" + price +
                ", id=" + id +

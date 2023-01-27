@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import org.voting.entity.Restaurant;
-import org.voting.service.MealService;
+import org.voting.service.MenuItemService;
 import org.voting.service.RestaurantService;
 import org.voting.to.RestaurantTo;
 
@@ -27,7 +27,7 @@ public class RestaurantProfileRestController {
     private RestaurantService restaurantService;
 
     @Autowired
-    private MealService mealService;
+    private MenuItemService menuItemService;
 
     @GetMapping()
     public List<Restaurant> getAll() {
@@ -35,12 +35,12 @@ public class RestaurantProfileRestController {
         return restaurantService.getAll();
     }
 
-    @GetMapping("/withMeals")
-    public List<RestaurantTo> getAllWithMeals() {
-        log.info("getAllWithMeals");
+    @GetMapping("/withMenu")
+    public List<RestaurantTo> getAllWithMenu() {
+        log.info("getAllWithMenu");
         List<RestaurantTo> restaurantsTo = new ArrayList<>();
         for (Restaurant r : restaurantService.getAll()) {
-            restaurantsTo.add(new RestaurantTo(r, mealService.getMenuForDate(r.getId(), LocalDate.now())));
+            restaurantsTo.add(new RestaurantTo(r, menuItemService.getMenuForDate(r.getId(), LocalDate.now())));
         }
         return restaurantsTo;
     }
@@ -51,8 +51,8 @@ public class RestaurantProfileRestController {
         return restaurantService.get(id);
     }
 
-    @GetMapping("/{id}/withMeals")
-    public RestaurantTo getWithMeals(@PathVariable int id) {
-        return new RestaurantTo(restaurantService.get(id), mealService.getMenuForDate(id, LocalDate.now()));
+    @GetMapping("/{id}/withMenu")
+    public RestaurantTo getWithMenu(@PathVariable int id) {
+        return new RestaurantTo(restaurantService.get(id), menuItemService.getMenuForDate(id, LocalDate.now()));
     }
 }

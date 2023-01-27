@@ -18,16 +18,16 @@ Admins manage restaurants and upload it's menus daily.
  * Admin section is accessible by `/rest/admin/` path and user section under `/rest/profile/` path.
  * The base entities:
     - restaurants;
-    - meals;
+    - menuItems;
     - users;
     - votes
  * Admins have the following functions:
     - viewing, adding, updating, enabling/disabling and deleting users.
     - viewing, adding, updating, deleting restaurants.
-    - viewing, adding, updating, deleting meals.
+    - viewing, adding, updating, deleting menuItems.
     - viewing votes of any user.
  * Users (and admins have some users) have the following abilities:
-    - viewing restaurants and their meals.
+    - viewing restaurants and their menuItems.
     - voting for a restaurant.
     - viewing own actual vote.
     - changing own actual vote before 11 p.m.
@@ -104,43 +104,43 @@ For simple visualization, the index.jsp is presented at the address [http://loca
 
 | Role | Path                                   | Method | Description                          |
 |------|----------------------------------------|--------|--------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/meals`] | `POST` | Create new Meal for restaurant by id |
+| Admin| [`/rest/admin/restaurants/{id}/menuItems`] | `POST` | Create new Meal for restaurant by id |
 
 * **Example:**
 
-`curl -s -X POST -d '{"description":"Some Meal","price":8}' -H 'Content-Type:application/json' http://localhost:8036/rest/admin/restaurants/100006/meals --user admin@gmail.com:admin`\
+`curl -s -X POST -d '{"description":"Some Meal","price":8}' -H 'Content-Type:application/json' http://localhost:8036/rest/admin/restaurants/100006/menuItems --user admin@gmail.com:admin`\
 
 
 | Role | Path                                            |  Method | Description                      |
 |------|-------------------------------------------------|---------|----------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/meals/{mealId}`] |   `PUT` | Update Meal for restaurant by id |
+| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |   `PUT` | Update Meal for restaurant by id |
 * **Example:**
 
-`curl -s -X PUT -d '{""dateMeal": "2023-01-09","description": "gazpacho11111","price": 28}' -H 'Content-type: application/json' http://localhost:8036/rest/admin/restaurants/100005/meals/100010 --user admin@gmail.com:admin`
+`curl -s -X PUT -d '{""dateMeal": "2023-01-09","description": "gazpacho11111","price": 28}' -H 'Content-type: application/json' http://localhost:8036/rest/admin/restaurants/100005/menuItems/100010 --user admin@gmail.com:admin`
 
 
 | Role | Path                                            |  Method | Description                      |
 |------|-------------------------------------------------|---------|----------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/meals/{mealId}`] |`DELETE` | Delete Meal for restaurant by id |
+| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |`DELETE` | Delete Meal for restaurant by id |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8036/rest/admin/restaurants/100006/meals/100013 --user admin@gmail.com:admin`
+`curl -s -X DELETE http://localhost:8036/rest/admin/restaurants/100006/menuItems/100013 --user admin@gmail.com:admin`
 
 
 | Role | Path                                   |  Method | Description                          |
 |------|----------------------------------------|---------|--------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/meals`] |   `GET` | Get actual menu for restaurant by id |
+| Admin| [`/rest/admin/restaurants/{id}/menuItems`] |   `GET` | Get actual menu for restaurant by id |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/admin/restaurants/100005/meals --user admin@gmail.com:admin`
+`curl -s http://localhost:8036/rest/admin/restaurants/100005/menuItems --user admin@gmail.com:admin`
 
 
 | Role | Path                                            |  Method | Description                              |
 |------|-------------------------------------------------|---------|------------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/meals/{mealId}`] |   `GET` | Get meals by mealId for restaurant by id |
+| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |   `GET` | Get menuItems by mealId for restaurant by id |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/admin/restaurants/100005/meals/100022 --user admin@gmail.com:admin`
+`curl -s http://localhost:8036/rest/admin/restaurants/100005/menuItems/100022 --user admin@gmail.com:admin`
 
 #### RestaurantRestController
 

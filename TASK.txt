@@ -28,7 +28,7 @@ Admin:
 -put /admin/restaurants/{id}
 -delete /admin/restaurants/{id}
 
--post /admin/restaurants/{id}/meal
--put /admin/restaurants/{id}/meal/{id}
--delete /admin/restaurants/{ad}/meal/{id}
--get /admin/restaurants/{id}/meals?{date}	
+-post /admin/restaurants/{id}/menuItem
+-put /admin/restaurants/{id}/menuItem/{id}
+-delete /admin/restaurants/{ad}/menuItem/{id}
+-get /admin/restaurants/{id}/menuItems?{date}

@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.voting.entity.Restaurant;
-import org.voting.service.MealService;
+import org.voting.service.MenuItemService;
 import org.voting.service.RestaurantService;
-import org.voting.to.MealTo;
+import org.voting.to.MenuItemTo;
 import org.voting.to.RestaurantTo;
 
 import java.net.URI;
@@ -33,7 +33,7 @@ public class RestaurantAdminRestController {
     private RestaurantService restaurantService;
 
     @Autowired
-    private MealService mealService;
+    private MenuItemService menuItemService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
@@ -70,14 +70,14 @@ public class RestaurantAdminRestController {
     @GetMapping("/{id}/history")
     public RestaurantTo getWithHistoryOfMeals(@PathVariable int id) {
         log.info("getWithHistoryOfMeals by restaurant with id {}", id);
-        List<MealTo> mealsTo = mealService.getHistoryOfMenu(id);
+        List<MenuItemTo> mealsTo = menuItemService.getHistoryOfMenu(id);
         return new RestaurantTo(restaurantService.get(id), mealsTo);
     }
 
     @GetMapping("/{id}/history/{date}")
     public RestaurantTo getWithOnePastDayHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
         log.info("getWithOnePastDayHistoryOfMeals by restaurant with id {}", id);
-        List<MealTo> mealsTo = mealService.getMenuForDate(id, date);
+        List<MenuItemTo> mealsTo = menuItemService.getMenuForDate(id, date);
         return new RestaurantTo(restaurantService.get(id), mealsTo);
     }
 }

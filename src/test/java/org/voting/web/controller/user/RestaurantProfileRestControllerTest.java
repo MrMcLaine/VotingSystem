@@ -27,7 +27,7 @@ public class RestaurantProfileRestControllerTest extends AbstractControllerTest 
     }
 
     @Test
-    public void getAllWithMeals() throws Exception {
+    public void getAllWithMenu() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + "?withMenu=true")
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())

@@ -1,9 +1,7 @@
 package org.voting;
 
 import org.voting.entity.Restaurant;
-import org.voting.to.RestaurantTo;
 
-import static org.voting.MealTestData.mealsAtelierCrennAllDates;
 import static org.voting.entity.abstractEntity.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {

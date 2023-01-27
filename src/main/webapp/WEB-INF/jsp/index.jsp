@@ -54,11 +54,11 @@
     <li><a href="" class="dealWithoutVisual">Update user's profile</a></li>
     <li><a href="" class="dealWithoutVisual">Delete user's profile</a></li>
     <li><a href="/rest/profile/restaurants" class="deal">All restaurants</a></li>
-    <li><a href="/rest/profile/restaurants/withMeals" class="deal">The restaurants with
+    <li><a href="/rest/profile/restaurants/withMenu" class="deal">The restaurants with
         menu</a></li>
     <li><a href="/rest/profile/restaurants/100005" class="deal">Get restaurant by
         ID(for example => ID = 100005)</a></li>
-    <li><a href="/rest/profile/restaurants/100004/withMeals" class="deal">Get restaurant by ID
+    <li><a href="/rest/profile/restaurants/100004/withMenu" class="deal">Get restaurant by ID
         with menu(for example - 100005)</a></li>
     <br>
     <li><a href="" class="dealWithoutVisual">Vote to restaurantId</a></li>
@@ -86,13 +86,13 @@
     <li><a href="" class="dealWithoutVisual">Delete restaurant</a></li>
     <li><a href="/rest/admin/restaurants" class="deal">Get all restaurants</a></li>
     <br>
-    <li><a href="" class="dealWithoutVisual">Create meal</a></li>
-    <li><a href="" class="dealWithoutVisual">Update meal</a></li>
-    <li><a href="" class="dealWithoutVisual">Delete meal</a></li>
-    <li><a href="/rest/admin/restaurants/100005/meals" class="deal">Get actual meals (for example - by restaurant with
+    <li><a href="" class="dealWithoutVisual">Create menuItem</a></li>
+    <li><a href="" class="dealWithoutVisual">Update menuItem</a></li>
+    <li><a href="" class="dealWithoutVisual">Delete menuItem</a></li>
+    <li><a href="/rest/admin/restaurants/100005/menu" class="deal">Get actual menuItems (for example - by restaurant with
         ID = 100005)</a></li>
-    <li><a href="/rest/admin/restaurants/100005/meals/100010" class="deal">Get meal by ID (for example - by restaurant
-        with ID = 100005, meal ID = 100010)</a></li>
+    <li><a href="/rest/admin/restaurants/100005/menu/100010" class="deal">Get menuItem by ID (for example - by restaurant
+        with ID = 100005, menuItem ID = 100010)</a></li>
     <br>
     <li><a href="/rest/admin/restaurants/100006/history" class="deal">Get history of restaurant's menu by restaurant's
         ID(for example - 100006)</a></li>
@@ -100,7 +100,5 @@
         restaurant's ID by date(for example - 100006 & 2022-12-31)</a></li>
     <br>
 </div>
-
-
 </body>
 </html>

@@ -3,8 +3,8 @@ package org.voting.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.voting.entity.Meal;
-import org.voting.to.MealTo;
+import org.voting.entity.MenuItem;
+import org.voting.to.MenuItemTo;
 import org.voting.util.exception.NotFoundException;
 
 import javax.validation.ConstraintViolationException;
@@ -13,19 +13,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.voting.MealTestData.*;
+import static org.voting.MenuItemTestData.*;
 import static org.voting.RestaurantTestData.BONBON_ID;
 import static org.voting.RestaurantTestData.CENTRAL_ID;
+import static org.voting.util.MenuItemsUtil.convertToMenuItemTo;
 
-class MealServiceTest extends AbstractServiceTest {
+class MenuItemServiceTest extends AbstractServiceTest {
 
     @Autowired
-    protected MealService service;
+    protected MenuItemService service;
 
     @Test
     void get() {
-        MealTo actual = service.get(MEAL1_CENTRAL_ID, CENTRAL_ID);
-        Assertions.assertEquals(actual, mealCentral1);
+        MenuItemTo actual = service.get(MENU_ITEM1_CENTRAL_ID, CENTRAL_ID);
+        Assertions.assertEquals(actual, menuItemCentral1);
     }
 
     @Test
@@ -35,36 +36,36 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void getNotOwn() {
-        assertThrows(NotFoundException.class, () -> service.get(MEAL1_CENTRAL_ID, BONBON_ID));
+        assertThrows(NotFoundException.class, () -> service.get(MENU_ITEM1_CENTRAL_ID, BONBON_ID));
     }
 
     @Test
     void create() {
-        Meal created = service.create(getNew(), CENTRAL_ID);
+        MenuItem created = service.create(getNew(), CENTRAL_ID);
         int newId = created.id();
-        Meal newMeal = getNew();
-        newMeal.setId(newId);
-        MEAL_MATCHER.assertMatch(created, newMeal);
+        MenuItem newMenuItem = getNew();
+        newMenuItem.setId(newId);
+        MENU_ITEM_MATCHER.assertMatch(created, newMenuItem);
     }
 
     @Test
     void update() {
-        Meal updated = getMealUpdated();
+        MenuItem updated = getMenuItemUpdated();
         service.update(updated, CENTRAL_ID);
-        Assertions.assertEquals(service.get(MEAL1_CENTRAL_ID, CENTRAL_ID), new MealTo(getMealUpdated()));
+        Assertions.assertEquals(service.get(MENU_ITEM1_CENTRAL_ID, CENTRAL_ID), convertToMenuItemTo(getMenuItemUpdated()));
     }
 
     @Test
     void updateNotOwn() {
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
-                service.update(getMealUpdated(), BONBON_ID));
+                service.update(getMenuItemUpdated(), BONBON_ID));
         Assertions.assertEquals("Not found entity with id=" + BONBON_ID, exception.getMessage());
     }
 
     @Test
     void delete() {
-        service.delete(MEAL1_CENTRAL_ID, CENTRAL_ID);
-        assertThrows(NotFoundException.class, () -> service.get(MEAL1_CENTRAL_ID, CENTRAL_ID));
+        service.delete(MENU_ITEM1_CENTRAL_ID, CENTRAL_ID);
+        assertThrows(NotFoundException.class, () -> service.get(MENU_ITEM1_CENTRAL_ID, CENTRAL_ID));
     }
 
     @Test
@@ -74,20 +75,20 @@ class MealServiceTest extends AbstractServiceTest {
 
     @Test
     void deleteNotOwn() {
-        assertThrows(NotFoundException.class, () -> service.delete(MEAL1_CENTRAL_ID, BONBON_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(MENU_ITEM1_CENTRAL_ID, BONBON_ID));
     }
 
     @Test
     void getActualMenu() {
-        List<MealTo> actualMenu = service.getMenuForDate(CENTRAL_ID, LocalDate.now());
-        Assertions.assertEquals(actualMenu, mealsToCentralForToday);
+        List<MenuItemTo> actualMenu = service.getMenuForDate(CENTRAL_ID, LocalDate.now());
+        Assertions.assertEquals(actualMenu, menuItemsToCentralForToday);
     }
 
     @Test
     void createWithException() {
         validateRootCause(ConstraintViolationException.class, () ->
-                service.create(new Meal(null, "", 33), CENTRAL_ID));
+                service.create(new MenuItem(null, "", 33), CENTRAL_ID));
         validateRootCause(ConstraintViolationException.class, () ->
-                service.create(new Meal(null, "Test meal  ", 0), CENTRAL_ID));
+                service.create(new MenuItem(null, "Test meal  ", 0), CENTRAL_ID));
     }
 }

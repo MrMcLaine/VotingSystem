@@ -32,8 +32,8 @@ VALUES (100004,'Marine Soil (-20 M)', 30, now()),
        (100006, 'Daisy Flower', 33, now()),
        (100006, 'Love to Eat Avocado Toast', 68, now()),
        (100006, 'Shining star', 49, now()),
-       (100006, 'Some test meal in past', 1, '2022-12-31'),
-       (100006, 'Second test meal in past', 1, '2022-12-30');
+       (100006, 'Some test menuItem in past', 1, '2022-12-31'),
+       (100006, 'Second test menuItem in past', 1, '2022-12-30');
 
 INSERT INTO vote(user_id, voting_date, restaurant_id)
 VALUES (100000, now(), 100004),
