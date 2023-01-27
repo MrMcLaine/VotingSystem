@@ -29,7 +29,7 @@ public class UserTestData {
             "james", Role.USER);
     public static final User DAVID = new User(DAVID_ID, "David", "david_D@gmail.com",
             "david", Role.USER);
-    public static final User TEMP_USER = new User(TEMP_USER_ID, "Temp User", "temp@gmail.com",
+    public static final User tempUser = new User(TEMP_USER_ID, "Temp User", "temp@gmail.com",
             "password", Role.USER);
     public static final List<User> users = List.of(DAVID, JAMES, ADMIN, USER);
 

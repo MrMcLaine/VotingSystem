@@ -34,7 +34,7 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void vote() {
-        User u = userService.create(TEMP_USER);
+        User u = userService.create(tempUser);
         Vote vote = service.save(CENTRAL_ID, u.getId());
         voteTempUserToday.setVotingDate(LocalDate.now());
         VOTE_MATCHER.assertMatch(vote, voteTempUserToday);
