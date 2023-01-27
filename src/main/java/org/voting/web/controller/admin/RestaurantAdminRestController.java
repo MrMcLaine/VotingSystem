@@ -68,16 +68,16 @@ public class RestaurantAdminRestController {
     }
 
     @GetMapping("/{id}/history")
-    public RestaurantTo getWithHistoryOfMeals(@PathVariable int id) {
+    public RestaurantTo getWithHistoryOfMenu(@PathVariable int id) {
         log.info("getWithHistoryOfMeals by restaurant with id {}", id);
-        List<MenuItemTo> mealsTo = menuItemService.getHistoryOfMenu(id);
-        return new RestaurantTo(restaurantService.get(id), mealsTo);
+        List<MenuItemTo> menuItemTos = menuItemService.getHistoryOfMenu(id);
+        return new RestaurantTo(restaurantService.get(id), menuItemTos);
     }
 
     @GetMapping("/{id}/history/{date}")
-    public RestaurantTo getWithOnePastDayHistoryOfMeals(@PathVariable int id, @PathVariable LocalDate date) {
+    public RestaurantTo getWithOnePastDayHistoryOfMenu(@PathVariable int id, @PathVariable LocalDate date) {
         log.info("getWithOnePastDayHistoryOfMeals by restaurant with id {}", id);
-        List<MenuItemTo> mealsTo = menuItemService.getMenuForDate(id, date);
-        return new RestaurantTo(restaurantService.get(id), mealsTo);
+        List<MenuItemTo> menuItemTos = menuItemService.getMenuForDate(id, date);
+        return new RestaurantTo(restaurantService.get(id), menuItemTos);
     }
 }

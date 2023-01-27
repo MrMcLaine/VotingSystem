@@ -34,7 +34,7 @@ public class VoteRestController {
         Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{restaurantId}")
-                .buildAndExpand(authUserId(), created.getId()).toUri();
+                .buildAndExpand(created.getRestaurant().getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
@@ -44,7 +44,7 @@ public class VoteRestController {
         Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{restaurantId}")
-                .buildAndExpand(authUserId(), created.getId()).toUri();
+                .buildAndExpand(created.getRestaurant().getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 

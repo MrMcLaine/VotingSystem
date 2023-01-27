@@ -38,9 +38,10 @@ public class RestaurantProfileRestController {
     @GetMapping("/withMenu")
     public List<RestaurantTo> getAllWithMenu() {
         log.info("getAllWithMenu");
+        LocalDate now = LocalDate.now();
         List<RestaurantTo> restaurantsTo = new ArrayList<>();
         for (Restaurant r : restaurantService.getAll()) {
-            restaurantsTo.add(new RestaurantTo(r, menuItemService.getMenuForDate(r.getId(), LocalDate.now())));
+            restaurantsTo.add(new RestaurantTo(r, menuItemService.getMenuForDate(r.getId(), now)));
         }
         return restaurantsTo;
     }

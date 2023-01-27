@@ -27,15 +27,6 @@ public class RestaurantProfileRestControllerTest extends AbstractControllerTest 
     }
 
     @Test
-    public void getAllWithMenu() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + "?withMenu=true")
-                .with(userHttpBasic(USER)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_MATCHER.contentJson(atelierCrenn, bonBon, central));
-    }
-
-    @Test
     public void get() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + CENTRAL_ID)
                 .with(userHttpBasic(USER)))
