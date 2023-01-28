@@ -29,13 +29,13 @@ public class VoteRepositoryImpl implements VoteRepository {
     public Vote save(int userId, int restaurantId) {
         Vote vote = new Vote();
         vote.setUser(userRepository.findById(userId).orElse(null));
-        vote.setRestaurant(restaurantRepository.get(restaurantId));
+        vote.setRestaurant(restaurantRepository.findById(restaurantId).orElse(null));
         return voteRepository.save(vote);
     }
 
     @Override
     public Vote update(Vote vote, int restaurantId) {
-        vote.setRestaurant(restaurantRepository.get(restaurantId));
+        vote.setRestaurant(restaurantRepository.findById(restaurantId).orElse(null));
         return voteRepository.save(vote);
     }
 

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.voting.entity.MenuItem;
-import org.voting.entity.Restaurant;
 import org.voting.repository.CrudMenuItemRepository;
 import org.voting.repository.CrudRestaurantRepository;
 import org.voting.repository.MenuItemRepository;
@@ -34,8 +33,7 @@ public class MenuItemRepositoryImpl implements MenuItemRepository {
         if (!menuItem.isNew() && get(menuItem.id(), restaurantId) == null) {
             return null;
         }
-        Restaurant t = (crudRestaurantRepository.get(restaurantId));
-        menuItem.setRestaurant(t);
+        menuItem.setRestaurant(crudRestaurantRepository.findById(restaurantId).orElse(null));
         return crudMenuItemRepository.save(menuItem);
     }
 
