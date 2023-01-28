@@ -28,8 +28,8 @@ public class VoteRestController {
     @Autowired
     private VoteService service;
 
-    @PostMapping("/{restaurantId}")
-    public ResponseEntity<Vote> createWithLocations(@PathVariable int restaurantId) {
+    @PostMapping()
+    public ResponseEntity<Vote> createWithLocations(@RequestBody int restaurantId) {
         log.info("crate Vote with RestaurantId={}", restaurantId);
         Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -39,7 +39,7 @@ public class VoteRestController {
     }
 
     @PutMapping("/{restaurantId}")
-    public ResponseEntity<Vote> updateWithLocations(@PathVariable int restaurantId) {
+    public ResponseEntity<Vote> updateWithLocations(@RequestBody int restaurantId) {
         log.info("update Vote with RestaurantId={}", restaurantId);
         Vote created = service.save(restaurantId, authUserId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -54,8 +54,8 @@ public class VoteRestController {
         return myVote != null ? convertToVoteTo(myVote) : null;
     }
 
-    @GetMapping("/{restaurantId}")
-    public List<VoteTo> getVotesByRestaurant(@PathVariable int restaurantId) {
+    @GetMapping()
+    public List<VoteTo> getVotesByRestaurant(@RequestParam int restaurantId) {
         List<Vote> votes = service.getVotesByRestaurant(restaurantId);
         return convertListToVoteTo(votes);
     }
