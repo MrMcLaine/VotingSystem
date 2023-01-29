@@ -42,45 +42,48 @@ Time is defined by default server system timezone.
 | James | james21@gmail.com | james    |
 | David | david_D@gmail.com | david    |
 
+To run the application is necessary:
+- the current version of Tomcat is 9.0.65;
+
 For simple visualization, the index.jsp is presented at the address [http://localhost:8036/voting-system/](http://localhost:8036/voting-system/)
 ### Curl commands to REST API
-#### AdminRestController
+### User
 
 | Role | Path                 |  Method | Description   |
 |------|----------------------|---------|---------------|
 | Admin| [`/rest/admin/users`]|   `GET` | Get all users |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/admin/users --user admin@gmail.com:admin`
+`curl -s http://localhost:8080/rest/admin/users --user admin@gmail.com:admin`
 
 | Role | Path                      |  Method | Description    |
 |------|---------------------------|---------|----------------|
 | Admin| [`/rest/admin/users/{id}`]|   `GET` | Get user by id |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/admin/users/100000 --user admin@gmail.com:admin`
+`curl -s http://localhost:8080/rest/admin/users/100000 --user admin@gmail.com:admin`
 
 | Role | Path                 |  Method  | Description |
 |------|----------------------|----------|-------------|
 | Admin| [`/rest/admin/users`]|   `POST` | Create user |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"testUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-Type:application/json' http://localhost:8036/rest/admin/users --user admin@gmail.com:admin`\
+`curl -s -X POST -d '{"name":"testUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-Type:application/json' http://localhost:8080/rest/admin/users --user admin@gmail.com:admin`\
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
 | Admin| [`/rest/admin/users/{id}`]|   `PUT` | Update user |
 * **Example:**
 
-`curl -s -X PUT -d '{"name":"testTestUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-type: application/json' http://localhost:8036/rest/admin/users/100020 --user admin@gmail.com:admin`
+`curl -s -X PUT -d '{"name":"testTestUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-type: application/json' http://localhost:8080/rest/admin/users/100020 --user admin@gmail.com:admin`
 
 
-| Role | Path                           |  Method | Description    |
-|------|--------------------------------|---------|----------------|
-| Admin| [`/rest/admin/users/by-email`] |   `GET` | Get user by id |
+| Role | Path                           |  Method | Description       |
+|------|--------------------------------|---------|-------------------|
+| Admin| [`/rest/admin/users/by-email`] |   `GET` | Get user by email |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/admin/users/by-email?email=user@gmail.com --user admin@gmail.com:admin`
+`curl -s http://localhost:8080/rest/admin/users/by-email?email=user@gmail.com --user admin@gmail.com:admin`
 
 
 | Role | Path                      |  Method   | Description        |
@@ -91,171 +94,159 @@ For simple visualization, the index.jsp is presented at the address [http://loca
     enabled=boolean
 * **Example:**
 
-`curl -s -X PATCH http://localhost:8036/rest/admin/users/100000?enabled=false --user admin@gmail.com:admin`
+`curl -s -X PATCH http://localhost:8080/rest/admin/users/100000?enabled=false --user admin@gmail.com:admin`
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
 | Admin| [`/rest/admin/users/{id}`]|`DELETE` | Delete user |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8036/rest/admin/users/100000 --user admin@gmail.com:admin`
-
-#### MealRestController
-
-| Role | Path                                   | Method | Description                          |
-|------|----------------------------------------|--------|--------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/menuItems`] | `POST` | Create new Meal for restaurant by id |
-
-* **Example:**
-
-`curl -s -X POST -d '{"description":"Some Meal","price":8}' -H 'Content-Type:application/json' http://localhost:8036/rest/admin/restaurants/100006/menuItems --user admin@gmail.com:admin`\
-
-
-| Role | Path                                            |  Method | Description                      |
-|------|-------------------------------------------------|---------|----------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |   `PUT` | Update Meal for restaurant by id |
-* **Example:**
-
-`curl -s -X PUT -d '{""dateMeal": "2023-01-09","description": "gazpacho11111","price": 28}' -H 'Content-type: application/json' http://localhost:8036/rest/admin/restaurants/100005/menuItems/100010 --user admin@gmail.com:admin`
-
-
-| Role | Path                                            |  Method | Description                      |
-|------|-------------------------------------------------|---------|----------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |`DELETE` | Delete Meal for restaurant by id |
-* **Example:**
-
-`curl -s -X DELETE http://localhost:8036/rest/admin/restaurants/100006/menuItems/100013 --user admin@gmail.com:admin`
-
-
-| Role | Path                                   |  Method | Description                          |
-|------|----------------------------------------|---------|--------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/menuItems`] |   `GET` | Get actual menu for restaurant by id |
-* **Example:**
-
-`curl -s http://localhost:8036/rest/admin/restaurants/100005/menuItems --user admin@gmail.com:admin`
-
-
-| Role | Path                                            |  Method | Description                              |
-|------|-------------------------------------------------|---------|------------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/menuItems/{mealId}`] |   `GET` | Get menuItems by mealId for restaurant by id |
-* **Example:**
-
-`curl -s http://localhost:8036/rest/admin/restaurants/100005/menuItems/100022 --user admin@gmail.com:admin`
-
-#### RestaurantRestController
-
-| Role | Path                       |  Method  | Description       |
-|------|----------------------------|----------|-------------------|
-| Admin| [`/rest/admin/restaurants`]|   `POST` | Create restaurant |
-* **Example:**
-
-`curl -s -X POST -d '{"name":"New 11Rest"}' -H 'Content-Type:application/json' http://localhost:8036/rest/admin/restaurants --user admin@gmail.com:admin`\
-
-| Role | Path                            |  Method | Description       |
-|------|---------------------------------|---------|-------------------|
-| Admin| [`/rest/admin/restaurants/{id}`]|   `PUT` | Update restaurant |
-* **Example:**
-
-`curl -s -X PUT -d '{"name":"updateName"}' -H 'Content-type: application/json' http://localhost:8036/rest/admin/restaurants/100021 --user admin@gmail.com:admin`
-
-| Role | Path                            |  Method | Description       |
-|------|---------------------------------|---------|-------------------|
-| Admin| [`/rest/admin/restaurants/{id}`]|`DELETE` | Delete restaurant |
-* **Example:**
-
-`curl -s -X DELETE http://localhost:8036/rest/admin/restaurants/100023 --user admin@gmail.com:admin`
-
-| Role | Path                         |  Method | Description         |
-|------|------------------------------|---------|---------------------|
-| Admin| [`/rest/admin/restaurants`]  |   `GET` | Get all restaurants |
-
-* **Example:**
-
-`curl -s http://localhost:8036/rest/admin/restaurants --user admin@gmail.com:admin`
-
-| Role | Path                                     |  Method | Description                                |
-|------|------------------------------------------|---------|--------------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/history`] |   `GET` | Get restaurant by id with history of Meals |
-* **Example:**
-
-`curl -s http://localhost:8036/rest/admin/restaurants/100006/history --user admin@gmail.com:admin`
-
-| Role | Path                                            |  Method | Description                                |
-|------|-------------------------------------------------|---------|--------------------------------------------|
-| Admin| [`/rest/admin/restaurants/{id}/history/{date}`] |   `GET` | Get restaurant by id with history of Meals |
-* **Example:**
-
-`curl -s http://localhost:8036/rest/admin/restaurants/100006/history/2022-12-31 --user admin@gmail.com:admin`
-
-#### ProfileRestController
+`curl -s -X DELETE http://localhost:8080/rest/admin/users/100000 --user admin@gmail.com:admin`
 
 | Role | Path              |  Method | Description    |
 |------|-------------------|---------|----------------|
 | User | [`/rest/profile`] |   `GET` | Get user by id |
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile --user user@gmail.com:password`
+`curl -s http://localhost:8080/rest/profile --user user@gmail.com:password`
 
 | Role | Path             |  Method | Description |
 |------|------------------|---------|-------------|
 | User | [`/rest/profile`]|   `PUT` | Update user |
 * **Example:**
 
-`curl -s -X PUT -d '{"name":"testTestUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-type: application/json' http://localhost:8036/rest/profile --user user@gmail.com:password`
+`curl -s -X PUT -d '{"name":"testTestUser","email":"test@gmail.com","password":"testPas","enabled":"true","roles":["USER"]}' -H 'Content-type: application/json' http://localhost:8080/rest/profile --user user@gmail.com:password`
 
 | Role | Path             |  Method | Description |
 |------|------------------|---------|-------------|
 | User | [`/rest/profile`]|`DELETE` | Delete user |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8036/rest/profile --user user@gmail.com:password`
+`curl -s -X DELETE http://localhost:8080/rest/profile --user user@gmail.com:password`
 
-#### RestaurantProfileRestController
+### MenuItem
 
-
-| Role | Path                          |  Method | Description         |
-|------|-------------------------------|---------|---------------------|
-| User | [`/rest/profile/restaurants`] |   `GET` | Get all restaurants |
-
-* **Example:**
-
-`curl -s http://localhost:8036/rest/profile/restaurants --user user@gmail.com:password`
-
-
-| Role | Path                                    |  Method | Description                    |
-|------|-----------------------------------------|---------|--------------------------------|
-| User | [`/rest/profile/restaurants/withMeals`] |   `GET` | Get all restaurants with Meals |
+| Role | Path                                  | Method | Description                              |
+|------|---------------------------------------|--------|------------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/menu`] | `POST` | Create new MenuItem for restaurant by id |
 
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile/restaurants/withMeals --user user@gmail.com:password`
+`curl -s -X POST -d '{"description":"Some MenuItem","price":8}' -H 'Content-Type:application/json' http://localhost:8080/rest/admin/restaurants/100006/menu --user admin@gmail.com:admin`\
 
 
-| Role | Path                               |  Method | Description |
-|------|------------------------------------|---------|-------------|
-| User | [`/rest/profile/restaurants/{id}`] |   `GET` | Get by id   |
+| Role | Path                                           |  Method | Description                          |
+|------|------------------------------------------------|---------|--------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/menu/{mealId}`] |   `PUT` | Update MenuItem for restaurant by id |
+* **Example:**
+
+`curl -s -X PUT -d '{""dateMenuItem": "2023-01-09","description": "gazpacho11111","price": 28}' -H 'Content-type: application/json' http://localhost:8080/rest/admin/restaurants/100005/menu/100010 --user admin@gmail.com:admin`
+
+
+| Role | Path                                           |  Method | Description                          |
+|------|------------------------------------------------|---------|--------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/menu/{mealId}`] |`DELETE` | Delete MenuItem for restaurant by id |
+* **Example:**
+
+`curl -s -X DELETE http://localhost:8080/rest/admin/restaurants/100006/menu/100013 --user admin@gmail.com:admin`
+
+
+| Role | Path                                  |  Method | Description                          |
+|------|---------------------------------------|---------|--------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/menu`] |   `GET` | Get actual menu for restaurant by id |
+* **Example:**
+
+`curl -s http://localhost:8080/rest/admin/restaurants/100005/menu --user admin@gmail.com:admin`
+
+
+| Role | Path                                           |  Method | Description                                      |
+|------|------------------------------------------------|---------|--------------------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/menu/{mealId}`] |   `GET` | Get menuItems by menuItemId for restaurant by id |
+* **Example:**
+
+`curl -s http://localhost:8080/rest/admin/restaurants/100005/menu/100022 --user admin@gmail.com:admin`
+
+### Restaurant
+
+| Role | Path                       |  Method  | Description       |
+|------|----------------------------|----------|-------------------|
+| Admin| [`/rest/admin/restaurants`]|   `POST` | Create restaurant |
+* **Example:**
+
+`curl -s -X POST -d '{"name":"New 11Rest"}' -H 'Content-Type:application/json' http://localhost:8080/rest/admin/restaurants --user admin@gmail.com:admin`\
+
+| Role | Path                            |  Method | Description       |
+|------|---------------------------------|---------|-------------------|
+| Admin| [`/rest/admin/restaurants/{id}`]|   `PUT` | Update restaurant |
+* **Example:**
+
+`curl -s -X PUT -d '{"name":"updateName"}' -H 'Content-type: application/json' http://localhost:8080/rest/admin/restaurants/100021 --user admin@gmail.com:admin`
+
+| Role | Path                            |  Method | Description       |
+|------|---------------------------------|---------|-------------------|
+| Admin| [`/rest/admin/restaurants/{id}`]|`DELETE` | Delete restaurant |
+* **Example:**
+
+`curl -s -X DELETE http://localhost:8080/rest/admin/restaurants/100023 --user admin@gmail.com:admin`
+
+| Role  | Path                        |  Method | Description          |
+|-------|-----------------------------|---------|----------------------|
+| Admin | [`/rest/admin/restaurants`] |   `GET` | Get all restaurants  |
+| User  | [`/rest/restaurants`]       |   `GET` | Get all restaurants  |
 
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile/restaurants/100005 --user user@gmail.com:password`
+`curl -s http://localhost:8080/rest/admin/restaurants --user admin@gmail.com:admin`
+`curl -s http://localhost:8080/rest/restaurants --user user@gmail.com:password`
 
+| Role | Path                                     |  Method | Description                               |
+|------|------------------------------------------|---------|-------------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/history`] |   `GET` | Get restaurant by id with history of Menu |
+* **Example:**
 
-| Role | Path                                         |  Method | Description          |
-|------|----------------------------------------------|---------|----------------------|
-| User | [`/rest/profile/restaurants/{id}/withMeals`] |   `GET` | Get by id with Meals |
+`curl -s http://localhost:8080/rest/admin/restaurants/100006/history --user admin@gmail.com:admin`
+
+| Role | Path                                            |  Method | Description                                       |
+|------|-------------------------------------------------|---------|---------------------------------------------------|
+| Admin| [`/rest/admin/restaurants/{id}/history/{date}`] |   `GET` | Get restaurant by id with one history day of Menu |
+* **Example:**
+
+`curl -s http://localhost:8080/rest/admin/restaurants/100006/history/2022-12-31 --user admin@gmail.com:admin`
+
+| Role | Path                           |  Method | Description                   |
+|------|--------------------------------|---------|-------------------------------|
+| User | [`/rest/restaurants/withMenu`] |   `GET` | Get all restaurants with Menu |
 
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile/restaurants/100004/withMeals --user user@gmail.com:password`
+`curl -s http://localhost:8080/rest/restaurants/withMenu --user user@gmail.com:password`
 
-#### VoteRestController
+
+| Role | Path                       |  Method | Description |
+|------|----------------------------|---------|-------------|
+| User | [`/rest/restaurants/{id}`] |   `GET` | Get by id   |
+
+* **Example:**
+
+`curl -s http://localhost:8080/rest/restaurants/100005 --user user@gmail.com:password`
+
+
+| Role | Path                                        |  Method | Description         |
+|------|---------------------------------------------|---------|---------------------|
+| User | [`/rest/profile/restaurants/{id}/withMenu`] |   `GET` | Get by id with Menu |
+
+* **Example:**
+
+`curl -s http://localhost:8080/rest/restaurants/100004/withMenu --user user@gmail.com:password`
+
+### Vote
 
 | Role | Path                         |  Method  | Description |
 |------|------------------------------|----------|-------------|
 | User | [`/rest/profile/votes/{id}`] |   `POST` | Vote        |
 * **Example:**
 
-`curl -s -X POST -d '' -H 'Content-Type:application/json' http://localhost:8036/rest/profile/votes/100005 --user user@gmail.com:password`\
+`curl -s -X POST -d '' -H 'Content-Type:application/json' http://localhost:8080/rest/profile/votes/100005 --user user@gmail.com:password`\
 
 
 | Role | Path                         |  Method | Description |
@@ -263,7 +254,7 @@ For simple visualization, the index.jsp is presented at the address [http://loca
 | User | [`/rest/profile/votes/{id}`] |   `PUT` | Update vote |
 * **Example:**
 
-`curl -s -X PUT -d '' -H 'Content-type: application/json' http://localhost:8036/rest/profile/votes/100006 --user user@gmail.com:password`
+`curl -s -X PUT -d '' -H 'Content-type: application/json' http://localhost:8080/rest/profile/votes/100006 --user user@gmail.com:password`
 
 
 | Role | Path                          |  Method | Description    |
@@ -272,7 +263,7 @@ For simple visualization, the index.jsp is presented at the address [http://loca
 
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile/votes/today --user user@gmail.com:password`
+`curl -s http://localhost:8080/rest/profile/votes/today --user user@gmail.com:password`
 
 
 | Role | Path                         |  Method | Description                       |
@@ -281,7 +272,7 @@ For simple visualization, the index.jsp is presented at the address [http://loca
 
 * **Example:**
 
-`curl -s http://localhost:8036/rest/profile/votes/100006 --user user@gmail.com:password`
+`curl -s http://localhost:8080/rest/profile/votes/100006 --user user@gmail.com:password`
 
 Technology stack:
 - Rest APi

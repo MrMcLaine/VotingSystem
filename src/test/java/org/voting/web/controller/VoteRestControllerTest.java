@@ -43,10 +43,10 @@ class VoteRestControllerTest extends AbstractControllerTest {
         userService.create(TEMP_USER);
         Vote newVote = VoteTestData.getNew();
         newVote.setUser(TEMP_USER);
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + CENTRAL_ID)
+        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(TEMP_USER))
-                .content(JsonUtil.writeValue(newVote)))
+                .content(JsonUtil.writeValue(CENTRAL_ID)))
                 .andExpect(status().isCreated());
 
         Vote created = VOTE_MATCHER.readFromJson(action);
@@ -54,7 +54,6 @@ class VoteRestControllerTest extends AbstractControllerTest {
         newVote.setId(newId);
         VOTE_MATCHER.assertMatch(created, newVote);
     }
-
 
     @Test
     void getTodayVote() throws Exception {
@@ -69,7 +68,7 @@ class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getVotesByRestaurant() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + BONBON_ID)
+        perform(MockMvcRequestBuilders.get(VoteRestController.REST_URL + "?restaurantId=" + BONBON_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
         voteAdminToday.setVotingDate(LocalDate.of(2022, 12, 31));

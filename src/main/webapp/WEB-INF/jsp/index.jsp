@@ -53,21 +53,21 @@
     <li><a href="/rest/profile" class="deal">User profile</a></li>
     <li><a href="" class="dealWithoutVisual">Update user's profile</a></li>
     <li><a href="" class="dealWithoutVisual">Delete user's profile</a></li>
-    <li><a href="/rest/profile/restaurants" class="deal">All restaurants</a></li>
-    <li><a href="/rest/profile/restaurants/withMenu" class="deal">The restaurants with
+    <li><a href="/rest/restaurants" class="deal">All restaurants</a></li>
+    <li><a href="/rest/restaurants/withMenu" class="deal">The restaurants with
         menu</a></li>
-    <li><a href="/rest/profile/restaurants/100005" class="deal">Get restaurant by
+    <li><a href="/rest/restaurants/100005" class="deal">Get restaurant by
         ID(for example => ID = 100005)</a></li>
-    <li><a href="/rest/profile/restaurants/100004/withMenu" class="deal">Get restaurant by ID
+    <li><a href="/rest/restaurants/100004/withMenu" class="deal">Get restaurant by ID
         with menu(for example - 100005)</a></li>
     <br>
     <li><a href="" class="dealWithoutVisual">Vote to restaurantId</a></li>
     <li><a href="" class="dealWithoutVisual">Change vote to restaurantId</a></li>
     <li><a href="/rest/profile/votes/today" class="deal">Today user's vote</a></li>
-    <li><a href="/rest/profile/votes/100005" class="deal">All today votes by restaurant(for example - restaurant with
+    <li><a href="/rest/profile/votes?restaurantId=100005" class="deal">All today votes by restaurant(for example - restaurant with
         ID=100005)</a></li>
     <br>
-    <li><a href="/rest/profile/votes/100005" class="deal">History user's votes by restaurant(for example - 1000005)</a>
+    <li><a href="/rest/profile/votes?restaurantId=100005" class="deal">History user's votes by restaurant(for example - 1000005)</a>
     </li>
 </div>
 

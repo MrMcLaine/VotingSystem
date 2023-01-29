@@ -50,7 +50,7 @@ public class MenuItemRestController {
 
     @PutMapping("/{menuItemId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody MenuItem menuItem, @PathVariable int menuItemId, @PathVariable int id) {
+    public void update(@RequestBody MenuItem menuItem, @PathVariable int id, @PathVariable int menuItemId) {
         log.info("update {}", menuItem);
         assureIdConsistent(menuItem, menuItemId);
         service.update(menuItem, id);

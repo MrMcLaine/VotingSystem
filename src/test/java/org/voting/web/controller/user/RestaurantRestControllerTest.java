@@ -13,9 +13,9 @@ import static org.voting.RestaurantTestData.atelierCrenn;
 import static org.voting.TestUtil.userHttpBasic;
 import static org.voting.UserTestData.USER;
 
-public class RestaurantProfileRestControllerTest extends AbstractControllerTest {
+public class RestaurantRestControllerTest extends AbstractControllerTest {
 
-    private static final String REST_URL = RestaurantProfileRestController.REST_URL + "/";
+    private static final String REST_URL = RestaurantRestController.REST_URL + "/";
 
     @Test
     public void getAll() throws Exception {

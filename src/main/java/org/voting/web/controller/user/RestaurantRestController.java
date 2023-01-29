@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = RestaurantProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantProfileRestController {
+@RequestMapping(value = RestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class RestaurantRestController {
 
-    public static final String REST_URL = "/rest/profile/restaurants";
+    public static final String REST_URL = "/rest/restaurants";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
